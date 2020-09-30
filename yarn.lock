@@ -2477,6 +2477,11 @@ bindings@^1.5.0:
   dependencies:
     file-uri-to-path "1.0.0"
 
+blu-css@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/blu-css/-/blu-css-0.0.1.tgz#609a49029569c4eabca4c1e0de3bd9e5ef97ee38"
+  integrity sha1-YJpJApVpxOq8pMHg3jvZ5e+X7jg=
+
 bluebird@^3.5.5:
   version "3.7.2"
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.7.2.tgz#9f229c15be272454ffa973ace0dbee79a1b0c36f"
