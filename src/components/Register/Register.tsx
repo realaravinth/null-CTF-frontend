@@ -1,18 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+
 //Componenets:
 import MenuTitle from '../Ncurses/MenuTitle';
 import MenuTopText from '../Ncurses/MenuTopText';
 import TextInput from '../Ncurses/TextInput';
-import WithMenuButton from '../Ncurses/wrapper/WithMenuButton';
 
 import WithContentContainer from '../Ncurses/wrapper/WithContentContainer';
 import WithMenuDialog from '../Ncurses/wrapper/WithMenuDialog';
+import WithMenuButton from '../Ncurses/wrapper/WithMenuButton';
 import WithMenuNote from '../Ncurses/wrapper/WithMenuNote';
 
-
-const Login: React.FunctionComponent = () => (
+const Register: React.FunctionComponent = () => (
 	<WithMenuDialog isChallenges={false}>
 			<MenuTitle title={"Log in"} />
 			<MenuTopText text={"Please Log in to continue"} />
@@ -26,35 +26,51 @@ const Login: React.FunctionComponent = () => (
 					input_type={"text"}
 					placeholder={"Username"}
 				/>
+				<TextInput
+					label={"Email: "}
+					required={true}
+					autoFocus={false}
+					autoComplete={"email"}
+					name={"email"}
+					input_type={"email"}
+					placeholder={"Email"}
+				/>
 				<TextInput 
-						label={"Password: "}
-						required={true}
-						autoFocus={false}
-						autoComplete={"password"}
-						name={"password"}
-						input_type={"password"}
-						placeholder={"Password"}
+					label={"Password: "}
+					required={true}
+					autoFocus={false}
+					autoComplete={"password"}
+					name={"password"}
+					input_type={"password"}
+					placeholder={"Password"}
+				/>
+				<TextInput 
+					label={"Password: "}
+					required={true}
+					autoFocus={false}
+					autoComplete={"password"}
+					name={"password"}
+					input_type={"password"}
+					placeholder={"Password"}
 				/>
 
-			</WithContentContainer>
 
+			</WithContentContainer>
 			<WithMenuButton>
-				<a href="#"><span>L</span>og in</a>
+				Register	
 			</WithMenuButton>
+
 			<WithMenuNote>
 				<p>
-					Don't have an account? <span className="clickable">
-						<Link to="/register">Register here</Link>
+					Already have an account? <span className="clickable">
+						<Link to="/">Log in here</Link>
 					</span>
 				</p>
 			</WithMenuNote>
 
 		</WithMenuDialog>
 
-
 	);
 
-
-
-export default Login;
+export default Register;
 

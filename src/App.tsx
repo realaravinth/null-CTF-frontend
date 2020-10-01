@@ -6,6 +6,7 @@ import Heading from './components/Heading';
 import Navbar from './components/Navbar';
 import Login from './components/Login/Login';
 import Leaderboard from './components/Leaderboard/Leaderboard';
+import Register from './components/Register/Register';
 
 // Stylesheets:
 import './ncurses.css';
@@ -19,6 +20,7 @@ function App() {
 		<div className="container">
 			<Switch>
 				<Route component={Leaderboard} path="/leaderboard" />
+				<Route component={Register} path="/register" />
 				<Route component={Login} exact path="/" />
 			</Switch>
 		</div> // End of container div

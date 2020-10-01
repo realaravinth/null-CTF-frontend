@@ -12,15 +12,16 @@ a {
 
 .container {
   margin: auto;
-  max-width: 1100px;
-  overflow: auto;
-  padding: 0 20px;
+    padding: 0 20px;
   padding-top: 50px;
 }
 
 body {
     background: #000;
     font-family: 'vt323_all', 'Courier New', Courier, monospace;
+	max-width: 1920px;
+	overflow: hidden;
+
 }
 
     /* Navbar Styling */
@@ -221,6 +222,7 @@ div.menudialog div.menuouter div.menubuttons div.menutopborder { background-colo
 .textInput {
     position: relative;
     background: #ccc;
+	width: 80%;
 }
 
 
@@ -233,5 +235,46 @@ div.menudialog div.menuouter div.menubuttons div.menutopborder { background-colo
     padding: 10px 20px;
 }
 
+label.label {
+	width: 1000px;
+	display: block;
+}
 
+.btn {
+	display: inline-block;
+	position: relative;
+	width: 93%;
+	text-align: center;
+	padding: 15px;
+	margin-top: 15px;
+	border-top: 1px solid #fff;
+	border-bottom: 1px solid #000;
+	border-left: 1px solid #fff;
+	border-right: 1px solid #000;
+}
 
+.note {
+	display: inline-block;
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-top: 10px;
+	padding-top: 7px;
+	font-size: 0.8rem;
+	text-decoration: none;
+	text-align: center;
+	width: 90%;
+}
+div.note .clickable:before {
+    content: "<";
+    display: inline;
+}
+
+div.note .clickable:after {
+    content: ">";
+    display: inline;
+}
+
+div.note a {
+	color: #725dfc;
+	font-weight: bold;
+}
