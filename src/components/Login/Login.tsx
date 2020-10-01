@@ -7,10 +7,11 @@ import TextInput from '../Ncurses/TextInput';
 import MenuButton from '../Ncurses/MenuButton';
 
 import WithContentContainer from '../Ncurses/wrapper/WithContentContainer';
+import WithMenuDialog from '../Ncurses/wrapper/WithMenuDialog';
 
 
 const Login: React.FunctionComponent = () => (
-		<div>
+	<WithMenuDialog isChallenges={false}>
 			<MenuTitle title={"Log in"} />
 			<MenuTopText text={"Please Log in to continue"} />
 			<WithContentContainer>
@@ -38,9 +39,8 @@ const Login: React.FunctionComponent = () => (
 			<MenuButton>
 				<a href="#"><span>L</span>og in</a>
 			</MenuButton>
+		</WithMenuDialog>
 
-
-		</div>
 	);
 
 

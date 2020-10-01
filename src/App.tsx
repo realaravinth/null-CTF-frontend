@@ -1,10 +1,11 @@
 import React from 'react';
+import { Switch, Route } from "react-router-dom";
 
 // Components:
 import Heading from './components/Heading';
 import Navbar from './components/Navbar';
 import Login from './components/Login/Login';
-import WithMenuDialog from './components/Ncurses/wrapper/WithMenuDialog';
+import Leaderboard from './components/Leaderboard/Leaderboard';
 
 // Stylesheets:
 import './ncurses.css';
@@ -14,10 +15,13 @@ function App() {
     <div className="App">
 		<Navbar />
 		<Heading />
-		<WithMenuDialog isChallenges={false}> 
-			<Login />
-		</WithMenuDialog>
 
+		<div className="container">
+			<Switch>
+				<Route component={Leaderboard} path="/leaderboard" />
+				<Route component={Login} exact path="/" />
+			</Switch>
+		</div> // End of container div
     </div>
   );
 }
