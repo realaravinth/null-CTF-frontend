@@ -1,5 +1,7 @@
 import React from 'react';
 
+//components
+import MenuBorder from './Border/MenuBorder';
 type MenuTitleProps  = {
   title: string;
 }
@@ -7,6 +9,7 @@ type MenuTitleProps  = {
 const MenuTitle: React.FunctionComponent<MenuTitleProps> = ({ title})=> (
 	<div className="menuheader">
 		<span>{ title }</span>
+		<MenuBorder />
 	</div>
 );
 

@@ -1,13 +1,11 @@
 import React from 'react';
 
 const Navbar: React.FC= () => (
-	<div className="mainheader">
-			<ul>
+			<ul className="navbar">
 				<li>./Questions</li>
 				<li>./Leaderboard</li>
 				<li>./Logout</li>
 			</ul>
-	</div>
 
 );
 

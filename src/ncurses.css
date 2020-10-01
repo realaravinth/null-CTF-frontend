@@ -1,11 +1,49 @@
 @import "~@openfonts/vt323_all/index.css";
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
 body {
-    background: #00f;
+    background: #000;
     font-family: 'vt323_all', 'Courier New', Courier, monospace;
 }
 
+
+
+
+    /* Navbar Styling */
+.navbar {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	background: #ccc;
+	overflow: auto;
+}
+
+.navbar ul {
+	list-style: none;
+}
+
+.navbar li {
+	float: left;
+	display: block;
+	background: #ccc;
+	text-decoration: none;
+	padding: 3px 20px;
+	color: #000;
+}
+
+
+.navbar li:hover {
+	color: #bbbbbb;
+	background: #000000;
+}
+
 div.mainheader {
-    color: #54fefe;
+	position: static;
+    color:#32b31d; 
     padding-bottom: 5px;
     margin-bottom: 10px;
     border-bottom: 1px solid #54fefe;
@@ -178,3 +216,6 @@ div.menudialog div.menuouter div.menubuttons div.menutopborder { background-colo
 .formGroup {
     padding: 10px 20px;
 }
+
+
+

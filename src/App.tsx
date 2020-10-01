@@ -16,7 +16,7 @@ function App() {
 		<Heading />
 		<WithMenuDialog isChallenges={false}> 
 			<Login />
-		</WithMenuDialog>>
+		</WithMenuDialog>
 
     </div>
   );
