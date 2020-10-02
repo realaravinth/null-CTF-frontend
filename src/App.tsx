@@ -4,10 +4,10 @@ import { Switch, Route } from "react-router-dom";
 // Components:
 import Heading from './components/Heading';
 import Navbar from './components/Navbar';
-import Login from './components/Login/Login';
-import Leaderboard from './components/Leaderboard/Leaderboard';
-import Register from './components/Register/Register';
-import Challenges from './components/Challenges/Challenges';
+import Login from './components/Login';
+import Leaderboard from './components/Leaderboard';
+import Register from './components/Register';
+import Challenges from './components/Challenges';
 // Stylesheets:
 import './ncurses.css';
 
