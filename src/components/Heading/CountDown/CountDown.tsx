@@ -22,8 +22,6 @@ const CountDown: React.FC = () => {
 		  return () => clearTimeout(timer);
 	});
 
-
-
 	const presentableTime = (time: number) => {
 		if(time < 10) {
 			return("0"+time.toString());
@@ -33,10 +31,10 @@ const CountDown: React.FC = () => {
 	}
 
 	return (
-			<div>
-				{presentableTime(timeInMinutes)}:{presentableTime(timeInSeconds)}
-			</div>
-		);
+		<div>
+			{presentableTime(timeInMinutes)}:{presentableTime(timeInSeconds)}
+		</div>
+	);
 }
 
 

@@ -1,14 +1,14 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
-//	<Link to="/questions">/questions</Link>
+//	<NavLink to="/questions">/questions</NavLink>
 const Navbar: React.FC= () => (
 			<ul className="navbar">
 				<li>
-					/questions
+					<NavLink to="/challenges">/challenges</NavLink>
 				</li>
 				<li>
-					<Link to="/leaderboard">/leaderboard</Link>
+					<NavLink to="/leaderboard">/leaderboard</NavLink>
 				</li>
 				<li>/logout</li>
 			</ul>

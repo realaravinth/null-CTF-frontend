@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Switch, Route } from "react-router-dom";
 
 // Components:
@@ -12,10 +12,13 @@ import Challenges from './components/Challenges';
 import './ncurses.css';
 
 function App() {
-  return (
-    <div className="App">
+
+	const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+	return (
+	<div className="App">
 		<Navbar />
-			<Heading isChallengeStarted={true} /> //replace this with isAuthenticated later
+		<Heading isChallengeStarted={true} /> //replace this with isAuthenticated later
 
 		<div className="container">
 			<Switch>
@@ -26,8 +29,8 @@ function App() {
 				<Route component={Login} path="/" />
 			</Switch>
 		</div> // End of container div
-    </div>
-  );
+	</div>
+	);
 }
 
 export default App;

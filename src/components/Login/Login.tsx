@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 //Componenets:
+import Title from '../Title';
+
 import MenuTitle from '../Ncurses/MenuTitle';
 import MenuTopText from '../Ncurses/MenuTopText';
 import TextInput from '../Ncurses/TextInput';
@@ -49,6 +51,7 @@ const Login: React.FunctionComponent = () => (
 				</p>
 			</WithMenuNote>
 
+			<Title location={"Log in"} />
 		</WithMenuDialog>
 
 

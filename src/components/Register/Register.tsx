@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 
 
 //Componenets:
+import Title from '../Title';
+
 import MenuTitle from '../Ncurses/MenuTitle';
 import MenuTopText from '../Ncurses/MenuTopText';
 import TextInput from '../Ncurses/TextInput';
@@ -14,6 +16,7 @@ import WithMenuNote from '../Ncurses/wrapper/WithMenuNote';
 
 const Register: React.FunctionComponent = () => (
 	<WithMenuDialog >
+		<Title location="Register" />
 			<MenuTitle title={"Log in"} />
 			<MenuTopText text={"Please Log in to continue"} />
 			<WithContentContainer>
