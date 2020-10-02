@@ -37,7 +37,7 @@ const CountDown: React.FC = () => {
 				{presentableTime(timeInMinutes)}:{presentableTime(timeInSeconds)}
 			</div>
 		);
-	}
+}
 
 
 export default CountDown;
