@@ -12,7 +12,7 @@ import WithMenuDialog from '../Ncurses/wrapper/WithMenuDialog';
 
 
 const Challenges: React.FC= () => (
-	<WithMenuDialog isChallenges={false}> 
+	<WithMenuDialog> 
 		<MenuTitle title={"Challenges"} />
 		<MenuTopText 
 			text={ "Solve these challges to find flags. Flags will be in the form nCTF{secret-goes-in-here}"}

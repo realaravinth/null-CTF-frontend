@@ -13,7 +13,7 @@ import WithMenuButton from '../Ncurses/wrapper/WithMenuButton';
 import WithMenuNote from '../Ncurses/wrapper/WithMenuNote';
 
 const Register: React.FunctionComponent = () => (
-	<WithMenuDialog isChallenges={false}>
+	<WithMenuDialog >
 			<MenuTitle title={"Log in"} />
 			<MenuTopText text={"Please Log in to continue"} />
 			<WithContentContainer>

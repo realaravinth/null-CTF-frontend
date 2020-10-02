@@ -22,7 +22,8 @@ function App() {
 				<Route component={Leaderboard} path="/leaderboard" />
 				<Route component={Register} path="/register" />
 				<Route component={Challenges} path="/challenges" />
-				<Route component={Login} exact path="/" />
+				<Route component={Login} path="/login" />
+				<Route component={Login} path="/" />
 			</Switch>
 		</div> // End of container div
     </div>

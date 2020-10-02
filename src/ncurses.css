@@ -317,3 +317,9 @@ div.note a {
 	color: #725dfc;
 	font-weight: bold;
 }
+
+
+div.menudialog.container {
+	margin: auto;
+	width: 70%;
+}

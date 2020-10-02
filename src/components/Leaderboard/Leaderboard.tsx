@@ -12,15 +12,13 @@ import WithMenuDialog from '../Ncurses/wrapper/WithMenuDialog';
 
 
 const Leaderboard: React.FC= () => (
-		<WithMenuDialog isChallenges={false}> 
-			<MenuTitle title={"Leaderboard"} />
-			<MenuTopText text={"Top 10 scores: "} />
-			<WithContentContainer>
-				<p> Scorecard goes here </p>
-			</WithContentContainer>
-
-
-		</WithMenuDialog>
+	<WithMenuDialog> 
+		<MenuTitle title={"Leaderboard"} />
+		<MenuTopText text={"Top 10 scores: "} />
+		<WithContentContainer>
+			<p> Scorecard goes here </p>
+		</WithContentContainer>
+	</WithMenuDialog>
 
 );
 
