@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 //components
 import CountDown from './CountDown';
@@ -10,7 +11,7 @@ type HeadingProps = {
 
 const Heading: React.FC<HeadingProps>= ({isChallengeStarted}) => (
 	<div className="mainheader">
-		<AsciiArt />
+		<Link to="/"><AsciiArt /></Link>
 		<div className="filler" />
 		<div className="timer">
 			<CountDown />

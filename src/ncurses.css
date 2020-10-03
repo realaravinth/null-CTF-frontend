@@ -12,8 +12,7 @@ a {
 
 .container {
 	margin: auto;
-	padding: 0 20px;
-	padding-top: 50px;
+	padding-top: 100px;
 }
 
 body {
@@ -72,9 +71,10 @@ div.mainheader {
 	display: flex;
 }
 
-div.mainheader p.ascii-art {
+.ascii-art {
 	padding-left: 30px;
 	flex-grow:3;
+	color: #32b31d;
 }
 
 div.filler {
