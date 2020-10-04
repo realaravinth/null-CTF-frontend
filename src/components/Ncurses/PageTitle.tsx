@@ -5,7 +5,7 @@ type PageTitleProps = {
 }
 const PageTitle: React.FC<PageTitleProps>= ({location}) => {
 	const setPageTitle = () => {
-		const title = location + " | CPageTF";
+		const title = location + " | Null CTF";
 		document.title = title ;
 	};
 	useEffect(() => {
