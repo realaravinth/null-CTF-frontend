@@ -5,7 +5,8 @@ import WithMenuOuter from  './WithMenuOuter';
 
 export enum menuDialogSize {
 	big,
-	small
+	small,
+	mobile
 }
 
 type WithMenuDialogProps = {
@@ -20,7 +21,9 @@ const WithMenuDialog: React.FC<WithMenuDialogProps> = ({ size, children })=> {
 	if(size === menuDialogSize.big) {
 		classes += " menudialogbig";
 	}
-
+	if(size === menuDialogSize.mobile) {
+			classes += " menudialogmobile";
+	}
 	return(
 	<div className={classes}>
 		<WithMenuOuter>

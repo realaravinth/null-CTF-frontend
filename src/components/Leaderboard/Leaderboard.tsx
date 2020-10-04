@@ -3,15 +3,11 @@ import React from 'react';
 
 //Componenets:
 import Title from '../Title';
-
 import MenuTitle from '../Ncurses/MenuTitle';
 import MenuTopText from '../Ncurses/MenuTopText';
 
 import WithContentContainer from '../Ncurses/wrapper/WithContentContainer';
-import WithContentColumned from '../Ncurses/wrapper/WithContentColumned';
 import WithMenuDialog, { menuDialogSize } from '../Ncurses/wrapper/WithMenuDialog';
-
-
 
 
 const Leaderboard: React.FC= () => (

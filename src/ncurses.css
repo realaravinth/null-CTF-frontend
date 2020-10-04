@@ -350,3 +350,8 @@ div.menudialog.container {
 .menudialog.menudialogbig {
 	max-width: 720px;
 }
+
+.menudialog.menudialogmobile {
+	margin-top: 20vh;
+	width: 40vh;
+}

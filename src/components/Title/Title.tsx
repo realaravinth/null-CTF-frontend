@@ -5,7 +5,7 @@ type TitleProps = {
 }
 const Title: React.FC<TitleProps>= ({location}) => {
 	const setTitle = () => {
-		const title = location + "| CTF";
+		const title = location + " | CTF";
 		document.title = title ;
 	};
 	useEffect(() => {
