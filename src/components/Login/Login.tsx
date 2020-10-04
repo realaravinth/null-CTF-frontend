@@ -2,10 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 //Componenets:
-import Title from '../Title';
-
-import MenuTitle from '../Ncurses/MenuTitle';
-import MenuTopText from '../Ncurses/MenuTopText';
 import TextInput from '../Ncurses/TextInput';
 import WithMenuButton from '../Ncurses/wrapper/WithMenuButton';
 
@@ -15,9 +11,11 @@ import WithMenuNote from '../Ncurses/wrapper/WithMenuNote';
 
 
 const Login: React.FunctionComponent = () => (
-	<WithMenuDialog size={menuDialogSize.small} >
-			<MenuTitle title={"Log in"} />
-			<MenuTopText text={"Please Log in to continue"} />
+	<WithMenuDialog 
+		size={menuDialogSize.small}
+		menuTitle={"Log in"}
+		pageTitle={"Log in"}
+		topText={"Please Log in to continue"} >
 			<WithContentContainer>
 				<TextInput 
 					label={"Username: "}
@@ -51,7 +49,6 @@ const Login: React.FunctionComponent = () => (
 				</p>
 			</WithMenuNote>
 
-			<Title location={"Log in"} />
 		</WithMenuDialog>
 
 
