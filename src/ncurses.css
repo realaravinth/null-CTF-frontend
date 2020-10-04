@@ -341,14 +341,16 @@ div.menudialog.container {
 .menusidebar{
 	flex-grow: 1;
 	max-width: 30%;
+	margin-right: 15px;
 }
 
 .menusidebarbody{
 	flex-grow: 3;
+	margin-left: 5px;
 }
 
 .menudialog.menudialogbig {
-	max-width: 720px;
+	max-width: 1200px;
 }
 
 .menudialog.menudialogmobile {
