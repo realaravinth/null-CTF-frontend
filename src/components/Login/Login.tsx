@@ -10,12 +10,12 @@ import TextInput from '../Ncurses/TextInput';
 import WithMenuButton from '../Ncurses/wrapper/WithMenuButton';
 
 import WithContentContainer from '../Ncurses/wrapper/WithContentContainer';
-import WithMenuDialog from '../Ncurses/wrapper/WithMenuDialog';
+import WithMenuDialog, { menuDialogSize } from '../Ncurses/wrapper/WithMenuDialog';
 import WithMenuNote from '../Ncurses/wrapper/WithMenuNote';
 
 
 const Login: React.FunctionComponent = () => (
-	<WithMenuDialog >
+	<WithMenuDialog size={menuDialogSize.small} >
 			<MenuTitle title={"Log in"} />
 			<MenuTopText text={"Please Log in to continue"} />
 			<WithContentContainer>

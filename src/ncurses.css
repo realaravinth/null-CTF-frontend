@@ -10,6 +10,10 @@ a {
 	text-decoration: none;
 }
 
+p {
+	padding: 5px;
+}
+
 .container {
 	margin: auto;
 	padding-top: 100px;
@@ -90,7 +94,7 @@ div.mainheader div.timer {
 
 div.menudialog {
     position: relative;
-    width: 480px;
+    max-width: 480px;
     margin: auto;
     background: #ccc;
     padding: 10px 4px 8px 4px;
@@ -241,10 +245,7 @@ div.menudialog div.menuouter div.menubuttons div.menutopborder { background-colo
 
 
 .textInput {
-    position: relative;
-    background: #ccc;
-	width: 80%;
-}
+   }
 
 
 
@@ -262,10 +263,14 @@ div.menudialog div.menuouter div.menubuttons div.menutopborder { background-colo
 label.label {
 	padding-top: 7.5px;
 	display: inline-block;
-	flex-grow: 2;
+	width: 20%;
 }
 
 .textInput {
+	display: inline-block;
+	position: relative;
+	max-width: 80%;
+	flex-grow: 3;
 	background-color: #b7b7b7;
 	padding-left: 5px;
 	left: 5px;
@@ -327,4 +332,21 @@ div.note a {
 div.menudialog.container {
 	margin: auto;
 	width: 70%;
+}
+
+.contentcolumned{
+	display: flex;
+}
+
+.menusidebar{
+	flex-grow: 1;
+	max-width: 30%;
+}
+
+.menusidebarbody{
+	flex-grow: 3;
+}
+
+.menudialog.menudialogbig {
+	max-width: 720px;
 }

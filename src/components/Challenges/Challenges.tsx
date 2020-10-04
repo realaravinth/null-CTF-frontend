@@ -5,21 +5,27 @@ import React from 'react';
 import MenuTitle from '../Ncurses/MenuTitle';
 import MenuTopText from '../Ncurses/MenuTopText';
 
-import WithContentContainer from '../Ncurses/wrapper/WithContentContainer';
-import WithMenuDialog from '../Ncurses/wrapper/WithMenuDialog';
-
+import WithContentColumned from '../Ncurses/wrapper/WithContentColumned';
+import WithMenuDialog, { menuDialogSize } from '../Ncurses/wrapper/WithMenuDialog';
+import WithContentSidebar from '../Ncurses/wrapper/WithContentSidebar';
+import WithContentSidebarBody from '../Ncurses/wrapper/WithContentSidebarBody';
 
 
 
 const Challenges: React.FC= () => (
-	<WithMenuDialog> 
+	<WithMenuDialog size={menuDialogSize.big}> 
 		<MenuTitle title={"Challenges"} />
 		<MenuTopText 
 			text={ "Solve these challges to find flags. Flags will be in the form nCTF{secret-goes-in-here}"}
 		/>
-		<WithContentContainer>
-			<p> Challenges go in here </p>
-		</WithContentContainer>
+		<WithContentColumned>
+			<WithContentSidebar>
+				<p> List of Challenges go in here </p>
+			</WithContentSidebar>
+			<WithContentSidebarBody>
+				<p> Challenges go in here </p>
+			</WithContentSidebarBody>
+		</WithContentColumned>
 	</WithMenuDialog>
 );
 
