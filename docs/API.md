@@ -60,8 +60,8 @@
 					```
 					{
 						"challenges" : [{
-								id: integer,
-								challenge: string
+								"id": integer,
+								"challenge": string
 							}...]
 					}
 					```
@@ -101,5 +101,32 @@
 				* description: unauthorized --- unauthenticated requests verifying responses
 			* `403`:
 				* description: forbidden --- challenge time over
+			* `501`:
+				* description: internal server error
+* #### `/api/leaderboard`:
+	* `GET`:
+		* summary: end point for getting leaderboard
+	* responses:
+		* `200`:
+			* description: returns top 10 contestants' name, score and
+			rank along with the requesting user's score and rank
+			* content: `application/json`
+				* schema:
+					```
+					{
+						"leaderboard" : [{
+									"rank": integer,
+									"name": string,
+									"score": integer
+								}...],
+						"user" : {
+								"rank": integer
+							}
+					}
+					```
+			* `401`:
+				* description: unauthorized --- user not logged in
+			* `403`:
+				* description: forbidden --- challenge yet to start 
 			* `501`:
 				* description: internal server error
