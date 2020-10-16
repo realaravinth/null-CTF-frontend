@@ -7,13 +7,13 @@
 			* user-id:
 				* description: user ID provided by eventtribe
 				* required: true
-				* content: `application/json`
-				* schema:
-					```
-					{
-						"user-id" : string
-					}
-					```
+		* content: `application/json`
+		* schema:
+			```
+			{
+				"user-id" : string
+			}
+			```
 	* responses:
 		* `200`:
 			* description: user authenticated
@@ -54,7 +54,7 @@
 		* summary: end point for getting challenges
 	* responses:
 		* `200`:
-			description: returns all available challenges
+			* description: returns all available challenges
 			* content: `application/json`
 				* schema:
 					```
@@ -66,6 +66,40 @@
 					}
 					```
 			* `401`:
-				description: unauthenticated requests
+				* description: unauthorized --- unauthenticated requests for challenges
+			* `501`:
+				* description: internal server error
+
+* #### `/api/check-response`:
+	* `POST`:
+		* summary: verify user response
+		* parameters:
+			* id:
+				* description: challenge ID 
+				* required: true
+			* response:
+				* description: user response
+		* content: `application/json`
+		* schema:
+			```
+			{
+				"id" : integer,
+				"response" : string
+			}
+			```
+	* responses:
+		* `200`:
+			* description: returns answer correctness
+			* content: `application/json`
+				* schema:
+					```
+					{
+						"isCorrect" : boolean	
+					}
+					```
+			* `401`:
+				* description: unauthorized --- unauthenticated requests verifying responses
+			* `403`:
+				* description: forbidden --- challenge time over
 			* `501`:
 				* description: internal server error
