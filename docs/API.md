@@ -65,10 +65,10 @@
 							}...]
 					}
 					```
-			* `401`:
-				* description: unauthorized --- unauthenticated requests for challenges
-			* `501`:
-				* description: internal server error
+		* `401`:
+			* description: unauthorized --- unauthenticated requests for challenges
+		* `501`:
+			* description: internal server error
 
 * #### `/api/check-response`:
 	* `POST`:
@@ -97,12 +97,12 @@
 						"isCorrect" : boolean	
 					}
 					```
-			* `401`:
-				* description: unauthorized --- unauthenticated requests verifying responses
-			* `403`:
-				* description: forbidden --- challenge time over
-			* `501`:
-				* description: internal server error
+		* `401`:
+			* description: unauthorized --- unauthenticated requests verifying responses
+		* `403`:
+			* description: forbidden --- challenge time over
+		* `501`:
+			* description: internal server error
 * #### `/api/leaderboard`:
 	* `GET`:
 		* summary: end point for getting leaderboard
@@ -124,9 +124,9 @@
 							}
 					}
 					```
-			* `401`:
-				* description: unauthorized --- user not logged in
-			* `403`:
-				* description: forbidden --- challenge yet to start 
-			* `501`:
-				* description: internal server error
+		* `401`:
+			* description: unauthorized --- user not logged in
+		* `403`:
+			* description: forbidden --- challenge yet to start 
+		* `501`:
+			* description: internal server error
