@@ -15,8 +15,6 @@ import './ncurses.css';
 
 function App() {
 
-	const [isAuthenticated, setIsAuthenticated] = useState(false);
-
 	if(window.matchMedia('(max-width: 1000px)').matches){
 		return(
 			<div className="App">

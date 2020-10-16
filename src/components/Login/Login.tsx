@@ -1,5 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch } from "react-redux";
+
+import { log_in } from '../../app/authentication/Slice';
 
 //Componenets:
 import TextInput from '../Ncurses/TextInput';
@@ -10,7 +13,18 @@ import WithMenuDialog, { menuDialogSize } from '../Ncurses/wrapper/WithMenuDialo
 import WithMenuNote from '../Ncurses/wrapper/WithMenuNote';
 
 
-const Login: React.FunctionComponent = () => (
+const Login: React.FunctionComponent = () => {
+
+	const dispatch = useDispatch();
+
+	const logMeIn = (username: string, password: string) => {
+		const status = fetch("https://localhost").then(data => data.json());
+		if (status) {
+			dispatch(log_in())	
+		}
+	}
+
+	return(
 	<WithMenuDialog 
 		size={menuDialogSize.small}
 		menuTitle={"Log in"}
@@ -50,11 +64,9 @@ const Login: React.FunctionComponent = () => (
 			</WithMenuNote>
 
 		</WithMenuDialog>
-
-
 	);
 
-
+}
 
 export default Login;
 
