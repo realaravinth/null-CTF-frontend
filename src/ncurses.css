@@ -353,6 +353,7 @@ div.menudialog.container {
 
 .menudialog.menudialogbig {
 	max-width: 1200px;
+	margin-top: 20px;
 }
 
 .menudialog.menudialogmobile {

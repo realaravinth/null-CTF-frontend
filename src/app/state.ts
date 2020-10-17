@@ -1,5 +1,7 @@
-import { authState } from './authentication/Slice';
+import { authState } from './reducers/authSlice';
+import { startTimeState } from './reducers/startTimeSlice'; 
 
 export default interface State {
-	auth: authState
+	auth: authState,
+	startTime: startTimeState
 }

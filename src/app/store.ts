@@ -1,7 +1,17 @@
 import { configureStore } from '@reduxjs/toolkit';
+import { useDispatch } from 'react-redux';
+import { authSlice } from './reducers/authSlice';
+import { startTimeSlice } from './reducers/startTimeSlice';
 
-export default configureStore({
+const store =  configureStore({
   reducer: {
-//    counter: counterReducer,
+	  authenticator: authSlice.reducer,
+	  startTimesetter: startTimeSlice.reducer
   },
 });
+
+export type AppDisatch = typeof store.dispatch;
+export const useAppDispatch = () => useDispatch<AppDisatch>();
+export type RoorState = ReturnType<typeof store.getState>;
+
+export default store;

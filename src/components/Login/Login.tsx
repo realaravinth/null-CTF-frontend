@@ -1,33 +1,74 @@
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState, ChangeEvent, MouseEvent } from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch } from "react-redux";
 
-import { log_in } from '../../app/authentication/Slice';
+import { log_in } from '../../app/reducers/authSlice';
+import { set_start_time } from '../../app/reducers/startTimeSlice';
+import { useAppDispatch } from "../../app/store";
 
+import  CONFIG  from '../../app/Config';
 //Componenets:
 import TextInput from '../Ncurses/TextInput';
 import WithMenuButton from '../Ncurses/wrapper/WithMenuButton';
 
 import WithContentContainer from '../Ncurses/wrapper/WithContentContainer';
 import WithMenuDialog, { menuDialogSize } from '../Ncurses/wrapper/WithMenuDialog';
-import WithMenuNote from '../Ncurses/wrapper/WithMenuNote';
 
 
+type loginRequestPayload = {
+	userID : string
+}
+
+type loginResponsePayload = {
+	startTime : string
+}
 const Login: React.FunctionComponent = () => {
 	
-	const [userId, setUserId] = useState("");
-	const dispatch = useDispatch();
+	const [userID, setUserID] = useState("");
+	const dispatch = useAppDispatch();
 
-	const logMeIn = (username: string, password: string) => {
-		const status = fetch("https://localhost").then(data => data.json());
-		if (status) {
-			dispatch(log_in())	
+	const logingHandler = async () => {
+	
+		const payload: loginRequestPayload = {
+				userID
 		}
+		const status = fetch(CONFIG.HOST, {
+			method: 'post',
+			headers:{
+				"Content-type" : "application/json; charset=UTF-8"
+			},
+			body: JSON.stringify(payload)})
+			.then( response => response.json())
+			.then((data) => {
+				const body = data.body;
+
+				switch(data.status) {
+					case 200:
+						alert("Logged in");
+							body.map((time: loginResponsePayload) => {
+							dispatch(log_in());	
+							dispatch(set_start_time(parseInt(time.startTime)));
+						});
+						break;
+					case 401:
+						alert("invalid credentials");
+						break;
+					case 403:
+						body.map((time: loginResponsePayload) => {
+							dispatch(set_start_time(parseInt(time.startTime)));
+						});
+						alert("you are early");
+						break;
+					case 501:
+						alert("Internal server error");
+						break;
+					default:
+						console.log("Error while trying to login, server returned : ${response.status}")
+					}
+		});
 	}
 
 	const updateUserID = (event: ChangeEvent<HTMLInputElement>) => 
-		setUserId(event.target.value);
-	
+		setUserID(event.target.value);
 
 	return(
 	<WithMenuDialog 
@@ -44,31 +85,20 @@ const Login: React.FunctionComponent = () => {
 					name={"userId"}
 					input_type={"text"}
 					placeholder={"User ID"}
-					value={userId}
+					value={userID}
 					onChange={updateUserID}
 				/>
 
 			</WithContentContainer>
 
 			<WithMenuButton>
-				<a href="#"><span>L</span>og in</a>
+				<div onClick={logingHandler}>
+					<span>L</span>og in
+				</div>
 			</WithMenuButton>
-
 		</WithMenuDialog>
 	);
 
 }
 
 export default Login;
-
-
-//				<TextInput 
-//						label={"Password: "}
-//						required={true}
-//						autoFocus={false}
-//						autoComplete={"password"}
-//						name={"password"}
-//						input_type={"password"}
-//						placeholder={"Password"}
-//				/>
-
