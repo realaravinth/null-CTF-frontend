@@ -61,7 +61,8 @@
 					{
 						"challenges" : [{
 								"id": integer,
-								"challenge": string
+								"challenge": string,
+								"score" : integer
 							}...]
 					}
 					```
