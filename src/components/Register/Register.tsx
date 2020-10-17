@@ -1,5 +1,4 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, ChangeEvent } from 'react';
 
 
 //Componenets:
@@ -9,9 +8,18 @@ import TextInput from '../Ncurses/TextInput';
 import WithContentContainer from '../Ncurses/wrapper/WithContentContainer';
 import WithMenuDialog, { menuDialogSize } from '../Ncurses/wrapper/WithMenuDialog';
 import WithMenuButton from '../Ncurses/wrapper/WithMenuButton';
-import WithMenuNote from '../Ncurses/wrapper/WithMenuNote';
 
-const Register: React.FunctionComponent = () => (
+const Register: React.FunctionComponent = () =>{
+
+	const [nickname, setNickname] = useState("");
+	const [email, setEmail] = useState("");
+
+	const updateNickname = (event: ChangeEvent<HTMLInputElement>) => 
+		setNickname(event.target.value);
+	const updateEmail = (event: ChangeEvent<HTMLInputElement>) => 
+		setEmail(event.target.value);
+
+	return (
 	<WithMenuDialog 
 		size={menuDialogSize.small} 
 		pageTitle ={"Register"}
@@ -19,13 +27,15 @@ const Register: React.FunctionComponent = () => (
 		topText ={"Please Log in to continue"}>
 			<WithContentContainer>
 				<TextInput 
-					label={"Username: "}
+					label={"Nickname: "}
 					required={true}
 					autoFocus={true}
-					autoComplete={"username"}
-					name={"username"}
+					autoComplete={"name"}
+					name={"nickname"}
 					input_type={"text"}
-					placeholder={"Username"}
+					placeholder={"Nickname"}
+					value={nickname}
+					onChange={updateNickname}
 				/>
 				<TextInput
 					label={"Email: "}
@@ -35,43 +45,16 @@ const Register: React.FunctionComponent = () => (
 					name={"email"}
 					input_type={"email"}
 					placeholder={"Email"}
+					value={email}
+					onChange={updateEmail}
 				/>
-				<TextInput 
-					label={"Password: "}
-					required={true}
-					autoFocus={false}
-					autoComplete={"password"}
-					name={"password"}
-					input_type={"password"}
-					placeholder={"Password"}
-				/>
-				<TextInput 
-					label={"Password: "}
-					required={true}
-					autoFocus={false}
-					autoComplete={"password"}
-					name={"password"}
-					input_type={"password"}
-					placeholder={"Password"}
-				/>
-
-
 			</WithContentContainer>
 			<WithMenuButton>
-				Register	
+				Save	
 			</WithMenuButton>
-
-			<WithMenuNote>
-				<p>
-					Already have an account? <span className="clickable">
-						<Link to="/">Log in here</Link>
-					</span>
-				</p>
-			</WithMenuNote>
-
 		</WithMenuDialog>
 
 	);
+}
 
 export default Register;
-

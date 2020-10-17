@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 
 import '../../ncurses.css';
 
@@ -10,8 +10,8 @@ type TextInputProps  = {
 	name: string,            
 	input_type: string,
 	placeholder: string,
-	//	onChange={this.handleInputChange} 
-
+	onChange(event: ChangeEvent<HTMLInputElement>):void,
+	value: string
 }
 
 const TextInput: React.FunctionComponent<TextInputProps> = ({
@@ -21,7 +21,10 @@ const TextInput: React.FunctionComponent<TextInputProps> = ({
 	autoComplete,
 	name,
 	input_type,
-	placeholder })=> (
+	placeholder,
+	value,
+	onChange
+})=> (
 	<div className="formGroup">
 		<label className="label">
 			{label}
@@ -34,6 +37,8 @@ const TextInput: React.FunctionComponent<TextInputProps> = ({
 			name={name}            
 			type={input_type}
 			placeholder={placeholder}
+			value={value}
+			onChange={onChange}
 		/>
 	</div>
 );

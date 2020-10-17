@@ -13,7 +13,7 @@ import BanMobileDevices from './components/Ncurses/BanMobileDecives';
 // Stylesheets:
 import './ncurses.css';
 
-function App() {
+const App = () => {
 
 	if(window.matchMedia('(max-width: 1000px)').matches){
 		return(

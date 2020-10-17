@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, ChangeEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 
@@ -14,7 +14,8 @@ import WithMenuNote from '../Ncurses/wrapper/WithMenuNote';
 
 
 const Login: React.FunctionComponent = () => {
-
+	
+	const [userId, setUserId] = useState("");
 	const dispatch = useDispatch();
 
 	const logMeIn = (username: string, password: string) => {
@@ -24,6 +25,10 @@ const Login: React.FunctionComponent = () => {
 		}
 	}
 
+	const updateUserID = (event: ChangeEvent<HTMLInputElement>) => 
+		setUserId(event.target.value);
+	
+
 	return(
 	<WithMenuDialog 
 		size={menuDialogSize.small}
@@ -32,22 +37,15 @@ const Login: React.FunctionComponent = () => {
 		topText={"Please Log in to continue"} >
 			<WithContentContainer>
 				<TextInput 
-					label={"Username: "}
+					label={"User ID: "}
 					required={true}
 					autoFocus={true}
 					autoComplete={"username"}
-					name={"username"}
+					name={"userId"}
 					input_type={"text"}
-					placeholder={"Username"}
-				/>
-				<TextInput 
-						label={"Password: "}
-						required={true}
-						autoFocus={false}
-						autoComplete={"password"}
-						name={"password"}
-						input_type={"password"}
-						placeholder={"Password"}
+					placeholder={"User ID"}
+					value={userId}
+					onChange={updateUserID}
 				/>
 
 			</WithContentContainer>
@@ -55,13 +53,6 @@ const Login: React.FunctionComponent = () => {
 			<WithMenuButton>
 				<a href="#"><span>L</span>og in</a>
 			</WithMenuButton>
-			<WithMenuNote>
-				<p>
-					Don't have an account? <span className="clickable">
-						<Link to="/register">Register here</Link>
-					</span>
-				</p>
-			</WithMenuNote>
 
 		</WithMenuDialog>
 	);
@@ -69,4 +60,15 @@ const Login: React.FunctionComponent = () => {
 }
 
 export default Login;
+
+
+//				<TextInput 
+//						label={"Password: "}
+//						required={true}
+//						autoFocus={false}
+//						autoComplete={"password"}
+//						name={"password"}
+//						input_type={"password"}
+//						placeholder={"Password"}
+//				/>
 
