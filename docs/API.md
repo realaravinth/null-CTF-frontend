@@ -11,7 +11,7 @@
 		* schema:
 			```
 			{
-				"user-id" : string
+				"userID" : string
 			}
 			```
 	* responses:
@@ -21,7 +21,7 @@
 				* schema:
 					```
 					{
-						"start-time" : integer //time in UNIX epoch
+						"startTime" : integer //time in UNIX epoch
 					}
 					```
 		* `401`:
@@ -34,7 +34,7 @@
 				* schema:
 					```
 					{
-						"start-time" : integer //time in UNIX epoch
+						"startTime" : integer //time in UNIX epoch
 					}
 					```
 		* `501`:
