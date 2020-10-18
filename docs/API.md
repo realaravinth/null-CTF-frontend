@@ -31,11 +31,11 @@
 			* description: forbidden due to early login attempt from before
 			the starting time of the challenge
 			* content: `application/json`
-				* schema:
-					```
-					{
-						"startTime" : integer //time in UNIX epoch
-					}
+			* schema:
+				```
+				{
+					"startTime" : integer //time in UNIX epoch
+				}
 					```
 		* `501`:
 			* description: internal server error
@@ -91,15 +91,15 @@
 		* `200`:
 			* description: returns all available challenges
 			* content: `application/json`
-				* schema:
-					```
-					{
-						"challenges" : [{
-								"id": integer,
-								"challenge": string,
-								"score" : integer
-							}...]
-					}
+			* schema:
+				```
+				{
+					"challenges" : [{
+							"id": integer,
+							"challenge": string,
+							"score" : integer
+						}...]
+				}
 					```
 		* `401`:
 			* description: unauthorized --- unauthenticated requests for challenges
@@ -127,11 +127,11 @@
 		* `200`:
 			* description: returns answer correctness
 			* content: `application/json`
-				* schema:
-					```
-					{
-						"isCorrect" : boolean	
-					}
+			* schema:
+				```
+				{
+					"isCorrect" : boolean	
+				}
 					```
 		* `401`:
 			* description: unauthorized --- unauthenticated requests verifying responses
@@ -149,19 +149,19 @@
 			* description: returns top 10 contestants' name, score and
 			rank along with the requesting user's score and rank
 			* content: `application/json`
-				* schema:
-					```
-					{
-						"leaderboard" : [{
-									"rank": integer,
-									"nickname": string,
-									"score": integer
-								}...],
-						"user" : {
-								"rank": integer
-							}
-					}
-					```
+			* schema:
+				```
+				{
+					"leaderboard" : [{
+								"rank": integer,
+								"nickname": string,
+								"score": integer
+							}...],
+					"user" : {
+							"rank": integer
+						}
+				}
+				```
 		* `401`:
 			* description: unauthorized --- user not logged in
 		* `403`:

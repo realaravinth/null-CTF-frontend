@@ -1,5 +1,5 @@
 import React, {useState, ChangeEvent, MouseEvent} from 'react';
-import {Link} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 
 import {log_in} from '../../app/reducers/authSlice';
 import {set_start_time} from '../../app/reducers/startTimeSlice';
@@ -9,7 +9,6 @@ import {login, loginRequestPayload} from '../../app/API/login';
 //Componenets:
 import TextInput from '../Ncurses/TextInput';
 import WithMenuButton from '../Ncurses/wrapper/WithMenuButton';
-
 import WithContentContainer from '../Ncurses/wrapper/WithContentContainer';
 import WithMenuDialog, {
   menuDialogSize,
@@ -21,8 +20,9 @@ type loginResponsePayload = {
 const Login: React.FunctionComponent = () => {
   const [userID, setUserID] = useState('');
   const dispatch = useAppDispatch();
+  let history = useHistory();
 
-  const logingHandler = async () => {
+  const logingHandler = () => {
     if (userID === '') {
       alert('uer ID cant be empty');
     } else {
@@ -40,6 +40,7 @@ const Login: React.FunctionComponent = () => {
               body.map((time: loginResponsePayload) => {
                 dispatch(log_in());
                 dispatch(set_start_time(parseInt(time.startTime)));
+                history.push('/register');
               });
               break;
             case 401:
@@ -56,10 +57,11 @@ const Login: React.FunctionComponent = () => {
               break;
             default:
               console.log(
-                'Error while trying to login, server returned : ${response.status}',
+                `Error while trying to login, server returned : ${data.status}`,
               );
           }
-        });
+        })
+        .catch(e => console.log(`Error occoured: ${e}`));
     }
   };
 
