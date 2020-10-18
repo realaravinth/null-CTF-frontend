@@ -1,6 +1,16 @@
 import React, {useState, ChangeEvent} from 'react';
+import {useHistory} from 'react-router-dom';
 
-//App stuff
+//Redux stuff
+import {useAppDispatch} from '../../app/store';
+import {registered} from '../../app/reducers/registerSlice';
+
+// API stuff
+import {
+  registerationRequestPayload,
+  registerationResponsePayload,
+  register,
+} from '../../app/API/register';
 
 //Componenets:
 import TextInput from '../Ncurses/TextInput';
@@ -10,34 +20,40 @@ import WithMenuDialog, {
 } from '../Ncurses/wrapper/WithMenuDialog';
 import WithMenuButton from '../Ncurses/wrapper/WithMenuButton';
 
-type registerationPayload = {
-  nickname: string;
-  email: string;
-};
-
 const Register: React.FunctionComponent = () => {
   const [nickname, setNickname] = useState('');
-  const updateNickname = (event: ChangeEvent<HTMLInputElement>) =>
+  const updateNickname = (event: ChangeEvent<HTMLInputElement>) => {
     setNickname(event.target.value);
-
+  };
+  const dispatch = useAppDispatch();
+  const history = useHistory();
   const [email, setEmail] = useState('');
-  const updateEmail = (event: ChangeEvent<HTMLInputElement>) =>
+  const updateEmail = (event: ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
+  };
 
-  const registeration = (nickname: string, email: string) => {
-    const payload: registerationPayload = {
+  const handleRegistration = (nickname: string, email: string) => {
+    const payload: registerationRequestPayload = {
       nickname,
       email,
     };
-    fetch('https://localhost', {
-      method: 'post',
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-      },
-      body: JSON.stringify(payload),
-    }).then(response => {
-      if (response.status !== 200) {
-        alert('Somthing happened');
+
+    register(payload).then(response => {
+      switch (response.status) {
+        case 200:
+          dispatch(registered());
+          history.push('/challenges');
+          break;
+        case 400:
+          if (response.body !== null) {
+            response.body.map((data: registerationResponsePayload) => {
+              alert('Somthing happened');
+              data.error.map(duplicateValue =>
+                alert(`looks like ${duplicateValue} is already taken`),
+              );
+            });
+          }
+          break;
       }
     });
   };

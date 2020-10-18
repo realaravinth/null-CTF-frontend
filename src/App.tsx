@@ -1,19 +1,24 @@
 import React, {useState} from 'react';
-import {Switch, Route} from 'react-router-dom';
 
 // Components:
 import Heading from './components/Heading';
 import Navbar from './components/Navbar';
-import Login from './components/Login';
-import Leaderboard from './components/Leaderboard';
-import Register from './components/Register';
-import Challenges from './components/Challenges';
 import BanMobileDevices from './components/Ncurses/BanMobileDecives';
+import Routes from './components/Routes';
 
 // Stylesheets:
 import './ncurses.css';
 
+enum isAuthenticated {
+  loggedOut,
+  loggedIn,
+  Registered,
+  challengeReady,
+}
+
 const App = () => {
+  const [userAuth, setUserAuth] = useState(isAuthenticated.loggedOut);
+
   if (window.matchMedia('(max-width: 1000px)').matches) {
     return (
       <div className="App">
@@ -26,16 +31,9 @@ const App = () => {
     return (
       <div className="App">
         <Navbar />
-        <Heading isChallengeStarted={true} /> //replace this with
-        isAuthenticated later
+        <Heading isChallengeStarted={true} /> //replace this with authenticated
         <div className="container">
-          <Switch>
-            <Route component={Leaderboard} path="/leaderboard" />
-            <Route component={Register} path="/register" />
-            <Route component={Challenges} path="/challenges" />
-            <Route component={Login} path="/login" />
-            <Route component={Login} exact path="/" />
-          </Switch>
+          <Routes />
         </div>
         // End of container div
       </div>

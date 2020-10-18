@@ -4,6 +4,10 @@ export type loginRequestPayload = {
   userID: string;
 };
 
+export type loginResponsePayload = {
+  startTime: string;
+};
+
 export const login = (payload: loginRequestPayload) =>
   fetch(API.LOGIN, {
     method: 'post',

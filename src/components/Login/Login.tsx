@@ -1,11 +1,18 @@
 import React, {useState, ChangeEvent, MouseEvent} from 'react';
 import {useHistory} from 'react-router-dom';
 
+// app stuff
 import {log_in} from '../../app/reducers/authSlice';
 import {set_start_time} from '../../app/reducers/startTimeSlice';
 import {useAppDispatch} from '../../app/store';
 
-import {login, loginRequestPayload} from '../../app/API/login';
+// api stuff
+import {
+  login,
+  loginResponsePayload,
+  loginRequestPayload,
+} from '../../app/API/login';
+
 //Componenets:
 import TextInput from '../Ncurses/TextInput';
 import WithMenuButton from '../Ncurses/wrapper/WithMenuButton';
@@ -14,9 +21,6 @@ import WithMenuDialog, {
   menuDialogSize,
 } from '../Ncurses/wrapper/WithMenuDialog';
 
-type loginResponsePayload = {
-  startTime: string;
-};
 const Login: React.FunctionComponent = () => {
   const [userID, setUserID] = useState('');
   const dispatch = useAppDispatch();
@@ -38,7 +42,6 @@ const Login: React.FunctionComponent = () => {
             case 200:
               alert('Logged in');
               body.map((time: loginResponsePayload) => {
-                dispatch(log_in());
                 dispatch(set_start_time(parseInt(time.startTime)));
                 history.push('/register');
               });
