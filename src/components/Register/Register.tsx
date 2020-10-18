@@ -46,8 +46,8 @@ const Register: React.FunctionComponent = () => {
     <WithMenuDialog
       size={menuDialogSize.small}
       pageTitle={'Register'}
-      menuTitle={'Sign up'}
-      topText={'Please Log in to continue'}>
+      menuTitle={'Register'}
+      topText={'Please enter the following details to continue'}>
       <WithContentContainer>
         <TextInput
           label={'Nickname: '}

@@ -1,7 +1,7 @@
 # API Specification:
 
-* #### `/api/login`:
-	* `POST`:
+1. #### `/api/login`:
+	* ##### `POST`:
 		* summary: Logs user in
 		* parameters:
 			* user-id:
@@ -14,16 +14,16 @@
 				"userID" : string
 			}
 			```
-	* responses:
+	* ##### responses:
 		* `200`:
 			* description: user authenticated
 			* content: `application/json`
-				* schema:
-					```
-					{
-						"startTime" : integer //time in UNIX epoch
-					}
-					```
+			* schema:
+				```
+				{
+					"startTime" : integer //time in UNIX epoch
+				}
+				```
 		* `401`:
 			* description: authentication failed due to invalid
 			credentials
@@ -40,19 +40,54 @@
 		* `501`:
 			* description: internal server error
 
-* #### `/api/logout`:
-	* `GET`:
+2. #### `/api/register`:
+	* ##### `POST`:
+		* summary: Registers user with their nickname and email
+		* parameters:
+			* nickname:
+				* description: the name showed in the leaderboard
+				* required: true
+			* email:
+				* description: email of the user
+				* required: true
+		* content: `application/json`
+		* schema:
+			```
+			{
+				"nickname" : string,
+				"email" : string
+			}
+			```
+	* ##### responses:
+		* `200`:
+			* description: user registered
+		* `401`:
+			* description: unauthenticated request
+		* `400`
+			* description: bad request --- duplicate nickname or email
+			* content: `application/json`
+			* schema:
+				```
+				{
+					"error" : reason // "email" or "nickname"
+				}
+				```
+		* `501`:
+			* description: internal server error
+
+3. #### `/api/logout`:
+	* ##### `GET`:
 		* summary: logs user out
-	* responses:
+	* ##### responses:
 		* `200`:
 			* description: user successfully logged out
 		* `501`:
 			* description: internal server error
 
-* #### `/api/get-challenges`:
-	* `GET`:
+4. #### `/api/get-challenges`:
+	* ##### `GET`:
 		* summary: end point for getting challenges
-	* responses:
+	* ##### responses:
 		* `200`:
 			* description: returns all available challenges
 			* content: `application/json`
@@ -71,8 +106,8 @@
 		* `501`:
 			* description: internal server error
 
-* #### `/api/check-response`:
-	* `POST`:
+5. #### `/api/check-response`:
+	* ##### `POST`:
 		* summary: verify user response
 		* parameters:
 			* id:
@@ -88,7 +123,7 @@
 				"response" : string
 			}
 			```
-	* responses:
+	* ##### responses:
 		* `200`:
 			* description: returns answer correctness
 			* content: `application/json`
@@ -102,12 +137,14 @@
 			* description: unauthorized --- unauthenticated requests verifying responses
 		* `403`:
 			* description: forbidden --- challenge time over
+		* `409`:
+			* description: conflict --- double submit of answer
 		* `501`:
 			* description: internal server error
-* #### `/api/leaderboard`:
-	* `GET`:
+6. #### `/api/leaderboard`:
+	* ##### `GET`:
 		* summary: end point for getting leaderboard
-	* responses:
+	* ##### responses:
 		* `200`:
 			* description: returns top 10 contestants' name, score and
 			rank along with the requesting user's score and rank
@@ -117,7 +154,7 @@
 					{
 						"leaderboard" : [{
 									"rank": integer,
-									"name": string,
+									"nickname": string,
 									"score": integer
 								}...],
 						"user" : {
