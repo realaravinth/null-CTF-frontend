@@ -5,7 +5,7 @@ import {log_in} from '../../app/reducers/authSlice';
 import {set_start_time} from '../../app/reducers/startTimeSlice';
 import {useAppDispatch} from '../../app/store';
 
-import CONFIG from '../../app/Config';
+import {login, loginRequestPayload} from '../../app/API/login';
 //Componenets:
 import TextInput from '../Ncurses/TextInput';
 import WithMenuButton from '../Ncurses/wrapper/WithMenuButton';
@@ -15,10 +15,6 @@ import WithMenuDialog, {
   menuDialogSize,
 } from '../Ncurses/wrapper/WithMenuDialog';
 
-type loginRequestPayload = {
-  userID: string;
-};
-
 type loginResponsePayload = {
   startTime: string;
 };
@@ -27,46 +23,44 @@ const Login: React.FunctionComponent = () => {
   const dispatch = useAppDispatch();
 
   const logingHandler = async () => {
-    const payload: loginRequestPayload = {
-      userID,
-    };
-    const status = fetch(CONFIG.HOST, {
-      method: 'post',
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-      },
-      body: JSON.stringify(payload),
-    })
-      .then(response => response.json())
-      .then(data => {
-        const body = data.body;
+    if (userID === '') {
+      alert('uer ID cant be empty');
+    } else {
+      const payload: loginRequestPayload = {
+        userID,
+      };
 
-        switch (data.status) {
-          case 200:
-            alert('Logged in');
-            body.map((time: loginResponsePayload) => {
-              dispatch(log_in());
-              dispatch(set_start_time(parseInt(time.startTime)));
-            });
-            break;
-          case 401:
-            alert('invalid credentials');
-            break;
-          case 403:
-            body.map((time: loginResponsePayload) => {
-              dispatch(set_start_time(parseInt(time.startTime)));
-            });
-            alert('you are early');
-            break;
-          case 501:
-            alert('Internal server error');
-            break;
-          default:
-            console.log(
-              'Error while trying to login, server returned : ${response.status}',
-            );
-        }
-      });
+      login(payload)
+        .then(response => response.json())
+        .then(data => {
+          const body = data.body;
+          switch (data.status) {
+            case 200:
+              alert('Logged in');
+              body.map((time: loginResponsePayload) => {
+                dispatch(log_in());
+                dispatch(set_start_time(parseInt(time.startTime)));
+              });
+              break;
+            case 401:
+              alert('invalid credentials');
+              break;
+            case 403:
+              body.map((time: loginResponsePayload) => {
+                dispatch(set_start_time(parseInt(time.startTime)));
+              });
+              alert('you are early');
+              break;
+            case 501:
+              alert('Internal server error');
+              break;
+            default:
+              console.log(
+                'Error while trying to login, server returned : ${response.status}',
+              );
+          }
+        });
+    }
   };
 
   const updateUserID = (event: ChangeEvent<HTMLInputElement>) =>
