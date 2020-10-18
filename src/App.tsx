@@ -36,7 +36,7 @@ const App = () => {
             <Route component={Login} path="/login" />
             <Route component={Login} exact path="/" />
           </Switch>
-        </div>{' '}
+        </div>
         // End of container div
       </div>
     );
