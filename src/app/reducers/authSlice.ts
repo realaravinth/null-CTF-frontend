@@ -1,8 +1,8 @@
-import { createSlice } from '@reduxjs/toolkit'; 
-import  State  from '../state';
+import {createSlice} from '@reduxjs/toolkit';
+import State from '../state';
 
 export interface authState {
-	value: boolean
+  value: boolean;
 }
 
 export const authSlice = createSlice({
@@ -20,7 +20,7 @@ export const authSlice = createSlice({
   },
 });
 
-export const { log_in, log_out } = authSlice.actions;
+export const {log_in, log_out} = authSlice.actions;
 
 export const selectAuth = (state: State) => state.auth.value;
 

@@ -1,362 +1,371 @@
-@import "~@openfonts/vt323_all/index.css";
+@import '~@openfonts/vt323_all/index.css';
 
 * {
-	margin: 0;
-	padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 a {
-	color: #000;
-	text-decoration: none;
+  color: #000;
+  text-decoration: none;
 }
 
 p {
-	padding: 5px;
+  padding: 5px;
 }
 
 .container {
-	margin: auto;
-	padding-top: 100px;
+  margin: auto;
+  padding-top: 100px;
 }
 
 body {
-    background: #000;
-    font-family: 'vt323_all', 'Courier New', Courier, monospace;
-	overflow: hidden;
-
+  background: #000;
+  font-family: 'vt323_all', 'Courier New', Courier, monospace;
+  overflow: hidden;
 }
 
-    /* Navbar Styling */
+/* Navbar Styling */
 .navbar {
-	list-style: none;
-	margin-bottom: 20px;
-	padding: 0;
-	background: #ccc;
-	overflow: auto;
+  list-style: none;
+  margin-bottom: 20px;
+  padding: 0;
+  background: #ccc;
+  overflow: auto;
 }
 
 .navbar ul {
-	margin: auto;
-	list-style: none;
+  margin: auto;
+  list-style: none;
 }
 
-.navbar li{
-	float: left;
-	display: block;
+.navbar li {
+  float: left;
+  display: block;
 }
 
 .navbar li a {
-	background: #ccc;
-	color: #000;
-	background: #ccc;
-	text-decoration: none;
-	padding: 8px 20px;
-	color: #000;
-	cursor: pointer;
+  background: #ccc;
+  color: #000;
+  background: #ccc;
+  text-decoration: none;
+  padding: 8px 20px;
+  color: #000;
+  cursor: pointer;
 }
 
-.navbar li a:hover{
-	color: #bbbbbb;
-	background: #000000;
+.navbar li a:hover {
+  color: #bbbbbb;
+  background: #000000;
 }
 
-.navbar li a.active{
-	background-color: #000;
-	color:#cccccc;
+.navbar li a.active {
+  background-color: #000;
+  color: #cccccc;
 }
-
 
 div.mainheader {
-    color:#32b31d; 
-    padding-bottom: 5px;
-    margin-bottom: 10px;
-    border-bottom: 1px solid #32b31d;
-    text-transform: uppercase;
-	display: flex;
+  color: #32b31d;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #32b31d;
+  text-transform: uppercase;
+  display: flex;
 }
 
 .ascii-art {
-	padding-left: 30px;
-	flex-grow:3;
-	color: #32b31d;
+  padding-left: 30px;
+  flex-grow: 3;
+  color: #32b31d;
 }
 
 div.filler {
-	flex-grow: 3;
+  flex-grow: 3;
 }
 
 div.mainheader div.timer {
-	display: inline-block;
-	margin-right: 50px;
-	font-size: 5rem;
+  display: inline-block;
+  margin-right: 50px;
+  font-size: 5rem;
 }
 
-
 div.menudialog {
-    position: relative;
-    max-width: 480px;
-    margin: auto;
-    background: #ccc;
-    padding: 10px 4px 8px 4px;
-    box-shadow: 16px 16px 0px 0px #000;
-	margin-top: 80px;
+  position: relative;
+  max-width: 480px;
+  margin: auto;
+  background: #ccc;
+  padding: 10px 4px 8px 4px;
+  box-shadow: 16px 16px 0px 0px #000;
+  margin-top: 80px;
 }
 
 div.menudialog div.menuouter div.menuheader {
-    position: relative;
-    top: -25px;
-    height: 0;
-    text-align: center;
+  position: relative;
+  top: -25px;
+  height: 0;
+  text-align: center;
 }
 
 div.menudialog div.menuouter div.menuheader span {
-    padding-right: 5px;
-    padding-left: 5px;
-    background-color: #ccc;
-    color: #725dfc;
-    text-transform: uppercase;
+  padding-right: 5px;
+  padding-left: 5px;
+  background-color: #ccc;
+  color: #725dfc;
+  text-transform: uppercase;
 }
 
 div.menudialog div.menuouter div.menutoptext {
-    margin-top: -7px;
-    margin-bottom: 4px;
+  margin-top: -7px;
+  margin-bottom: 4px;
 }
 
 div.menudialog div.menuouter {
-    position: relative;
-    padding: 15px;
-    border-top: 1px solid #fff;
-    border-bottom: 1px solid #000;
-    border-left: 1px solid #fff;
-    border-right: 1px solid #000;
+  position: relative;
+  padding: 15px;
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #000;
+  border-left: 1px solid #fff;
+  border-right: 1px solid #000;
 }
 
 div.menudialog div.menuouter div.menutopborder,
 div.menudialog div.menuouter div.menubottomborder {
-    position: absolute;
-    border: none;
-    width: 5px;
-    height: 1px;
+  position: absolute;
+  border: none;
+  width: 5px;
+  height: 1px;
 }
 
 div.menudialog div.menuouter div.menutopborder {
-    top: -1px;
-    right: -1px;
-    background-color: #000;
+  top: -1px;
+  right: -1px;
+  background-color: #000;
 }
 
 div.menudialog div.menuouter div.menubottomborder {
-    bottom: -1px;
-    left: -1px;
-    background-color: #fff;
+  bottom: -1px;
+  left: -1px;
+  background-color: #fff;
 }
 
 div.menudialog div.menuouter div.menuoptions {
-    position: relative;
-    padding: 0;
-    border-top: 1px solid #000;
-    border-bottom: 1px solid #fff;
-    border-left: 1px solid #000;
-    border-right: 1px solid #fff;
+  position: relative;
+  padding: 0;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #fff;
+  border-left: 1px solid #000;
+  border-right: 1px solid #fff;
 }
 
-div.menudialog div.menuouter div.menuoptions div.menutopborder { background-color: #fff; }
-div.menudialog div.menuouter div.menuoptions div.menubottomborder { background-color: #000; }
+div.menudialog div.menuouter div.menuoptions div.menutopborder {
+  background-color: #fff;
+}
+div.menudialog div.menuouter div.menuoptions div.menubottomborder {
+  background-color: #000;
+}
 
 div.menudialog div.menuouter div.menuoptions ul {
-    list-style: none;
-    padding-left: 30px;
-    padding-right: 4px;
+  list-style: none;
+  padding-left: 30px;
+  padding-right: 4px;
 }
 
 div.menudialog div.menuouter div.menuoptions ul li a {
-    height: 1.2em;
-    padding: 3px 2px 1px 2px;
-    overflow: hidden;
-    text-decoration: none;
-    color: #000;
+  height: 1.2em;
+  padding: 3px 2px 1px 2px;
+  overflow: hidden;
+  text-decoration: none;
+  color: #000;
 }
 
 div.menudialog div.menuouter div.menuoptions ul li a:hover,
 div.menudialog div.menuouter div.menubuttons a:hover,
 div.menudialog div.menuouter div.menuoptions ul li a:focus,
 div.menudialog div.menuouter div.menubuttons a:focus {
-    color: #fff;
-    background-color: #00f;
+  color: #fff;
+  background-color: #00f;
 }
 
 div.menudialog div.menuouter div.menuoptions ul li a:before {
-    content: "[\0000a0]\0000a0";
-    display: inline;
+  content: '[\0000a0]\0000a0';
+  display: inline;
 }
 
 div.menudialog div.menuouter div.menuoptions ul li a.checked:before {
-    content: "[x]\0000a0";
-    display: inline;
+  content: '[x]\0000a0';
+  display: inline;
 }
 
 div.menudialog div.menuouter div.menuoptions ul li a:after {
-    content: "\0000a0--->";
-    display: inline;
+  content: '\0000a0--->';
+  display: inline;
 }
 
 div.menudialog div.menuouter div.menuoptions ul li a span,
-div.menudialog div.menuouter div.menubuttons a span { color: #725dfc; }
+div.menudialog div.menuouter div.menubuttons a span {
+  color: #725dfc;
+}
 
 div.menudialog div.menuouter div.menuoptions ul li a:hover span,
 div.menudialog div.menuouter div.menubuttons a:hover span,
 div.menudialog div.menuouter div.menuoptions ul li a:focus span,
-div.menudialog div.menuouter div.menubuttons a:focus span { color: #f7fb54; }
+div.menudialog div.menuouter div.menubuttons a:focus span {
+  color: #f7fb54;
+}
 
 div.menudialog div.menuouter div.menubuttons {
-    position: relative;
-    width: 100%;
-    margin: 15px 0 -7px -15px;
-    padding-top: 10px;
-    padding-right: 15px;
-    padding-left: 15px;
-    border-top: 1px solid #fff;
-    text-align: center;
+  position: relative;
+  width: 100%;
+  margin: 15px 0 -7px -15px;
+  padding-top: 10px;
+  padding-right: 15px;
+  padding-left: 15px;
+  border-top: 1px solid #fff;
+  text-align: center;
 }
 
 div.menudialog div.menuouter div.menubuttons a {
-    display: inline-block;
-    margin-left: 10px;
-    margin-right: 10px;
-    padding-top: 2px;
-    text-decoration: none;
-    color: #696969;
+  display: inline-block;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding-top: 2px;
+  text-decoration: none;
+  color: #696969;
 }
 
 div.menudialog div.menuouter div.menubuttons a:before,
 div.menudialog div.menuouter div.menubuttons a:after {
-    display: inline;
-    color: #000;
+  display: inline;
+  color: #000;
 }
 
 div.menudialog div.menuouter div.menubuttons a:hover:before,
 div.menudialog div.menuouter div.menubuttons a:hover:after,
 div.menudialog div.menuouter div.menubuttons a:focus:before,
-div.menudialog div.menuouter div.menubuttons a:focus:after { color: inherit; }
+div.menudialog div.menuouter div.menubuttons a:focus:after {
+  color: inherit;
+}
 
-div.menudialog div.menuouter div.menubuttons a:before { content: "\003c\0000a0"; }
-div.menudialog div.menuouter div.menubuttons a:after { content: "\0000a0\003e"; }
+div.menudialog div.menuouter div.menubuttons a:before {
+  content: '\003c\0000a0';
+}
+div.menudialog div.menuouter div.menubuttons a:after {
+  content: '\0000a0\003e';
+}
 
-div.menudialog div.menuouter div.menubuttons div.menutopborder { background-color: #000; }
-
+div.menudialog div.menuouter div.menubuttons div.menutopborder {
+  background-color: #000;
+}
 
 .textInput {
-   }
-
-
+}
 
 .menuoptions .formGroup {
-	position:relative;
+  position: relative;
 }
 
 .formGroup {
-    padding: 20px 20px;
-	display: flex;
+  padding: 20px 20px;
+  display: flex;
 
-	height: 25px;
+  height: 25px;
 }
 
 label.label {
-	padding-top: 12px;
-	display: inline-block;
-	width: 20%;
+  padding-top: 12px;
+  display: inline-block;
+  width: 20%;
 }
 
 .textInput {
-	display: inline-block;
-	position: relative;
-	max-width: 80%;
-	flex-grow: 3;
-	background-color: #b7b7b7;
-	padding-left: 5px;
-	height: 29px;
-	left: 5px;
+  display: inline-block;
+  position: relative;
+  max-width: 80%;
+  flex-grow: 3;
+  background-color: #b7b7b7;
+  padding-left: 5px;
+  height: 29px;
+  left: 5px;
 }
 
 .btn {
-	display: inline-block;
-	position: relative;
-	width: 93%;
-	text-align: center;
-	padding: 15px;
-	margin-top: 15px;
-	border-top: 1px solid #fff;
-	border-bottom: 1px solid #000;
-	border-left: 1px solid #fff;
-	border-right: 1px solid #000;
-	cursor: pointer;
+  display: inline-block;
+  position: relative;
+  width: 93%;
+  text-align: center;
+  padding: 15px;
+  margin-top: 15px;
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #000;
+  border-left: 1px solid #fff;
+  border-right: 1px solid #000;
+  cursor: pointer;
 }
 
 .btn:hover {
-	background-color: #999;
+  background-color: #999;
 }
 
 .note {
-	display: inline-block;
-	margin-left: 10px;
-	margin-right: 10px;
-	margin-top: 10px;
-	padding-top: 7px;
-	font-size: 0.8rem;
-	text-decoration: none;
-	text-align: center;
-	width: 90%;
+  display: inline-block;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+  padding-top: 7px;
+  font-size: 0.8rem;
+  text-decoration: none;
+  text-align: center;
+  width: 90%;
 }
 
 div.note .clickable:before {
-    content: "<";
-    display: inline;
+  content: '<';
+  display: inline;
 }
 
 div.note .clickable:after {
-    content: ">";
-    display: inline;
+  content: '>';
+  display: inline;
 }
 
 div.note .clickable:hover {
-	color: #725dfc;
+  color: #725dfc;
 }
 div.note .clickable a:hover {
-	color: #32b31d;
+  color: #32b31d;
 }
 
 div.note a {
-	color: #725dfc;
-	font-weight: bold;
+  color: #725dfc;
+  font-weight: bold;
 }
-
 
 div.menudialog.container {
-	margin: auto;
-	width: 70%;
+  margin: auto;
+  width: 70%;
 }
 
-.contentcolumned{
-	display: flex;
+.contentcolumned {
+  display: flex;
 }
 
-.menusidebar{
-	flex-grow: 1;
-	max-width: 30%;
-	margin-right: 15px;
+.menusidebar {
+  flex-grow: 1;
+  max-width: 30%;
+  margin-right: 15px;
 }
 
-.menusidebarbody{
-	flex-grow: 3;
-	margin-left: 5px;
+.menusidebarbody {
+  flex-grow: 3;
+  margin-left: 5px;
 }
 
 .menudialog.menudialogbig {
-	max-width: 1200px;
-	margin-top: 20px;
+  max-width: 1200px;
+  margin-top: 20px;
 }
 
 .menudialog.menudialogmobile {
-	margin-top: 20vh;
-	width: 40vh;
+  margin-top: 20vh;
+  width: 40vh;
 }

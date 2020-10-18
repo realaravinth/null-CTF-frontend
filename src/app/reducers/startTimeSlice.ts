@@ -1,14 +1,14 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'; 
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
-import  State  from '../state';
+import State from '../state';
 
 export interface startTimeState {
-	value: Time
+  value: Time;
 }
 
 enum Time {
-	null,
-	number
+  null,
+  number,
 }
 
 export const startTimeSlice = createSlice({
@@ -17,13 +17,13 @@ export const startTimeSlice = createSlice({
     value: Time.null,
   },
   reducers: {
-	  set_start_time: (state, action: PayloadAction<number>) => {
+    set_start_time: (state, action: PayloadAction<number>) => {
       state.value = action.payload;
     },
   },
 });
 
-export const { set_start_time } = startTimeSlice.actions;
+export const {set_start_time} = startTimeSlice.actions;
 
 export const selectstartTime = (state: State) => state.startTime.value;
 

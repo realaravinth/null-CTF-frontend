@@ -1,9 +1,9 @@
 type Config = {
-	HOST: string
-}
+  HOST: string;
+};
 
 const CONFIG: Config = {
-	HOST: "http://localhost"
+  HOST: 'http://localhost',
 };
 
 export default CONFIG;

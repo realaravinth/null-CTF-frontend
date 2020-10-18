@@ -1,12 +1,12 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { useDispatch } from 'react-redux';
-import { authSlice } from './reducers/authSlice';
-import { startTimeSlice } from './reducers/startTimeSlice';
+import {configureStore} from '@reduxjs/toolkit';
+import {useDispatch} from 'react-redux';
+import {authSlice} from './reducers/authSlice';
+import {startTimeSlice} from './reducers/startTimeSlice';
 
-const store =  configureStore({
+const store = configureStore({
   reducer: {
-	  authenticator: authSlice.reducer,
-	  startTimesetter: startTimeSlice.reducer
+    authenticator: authSlice.reducer,
+    startTimesetter: startTimeSlice.reducer,
   },
 });
 
