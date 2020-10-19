@@ -2,7 +2,7 @@ import React, {useState, ChangeEvent, MouseEvent} from 'react';
 import {useHistory} from 'react-router-dom';
 
 // app stuff
-import {log_in} from '../../app/reducers/authSlice';
+import {setLoggedIn} from '../../app/reducers/authSlice';
 import {set_start_time} from '../../app/reducers/startTimeSlice';
 import {useAppDispatch} from '../../app/store';
 
@@ -46,6 +46,7 @@ const Login: React.FunctionComponent = () => {
               alert('Logged in');
               body.map((time: loginResponsePayload) => {
                 dispatch(set_start_time(parseInt(time.startTime)));
+                dispatch(setLoggedIn);
                 history.push('/register');
               });
               break;

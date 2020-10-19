@@ -1,9 +1,14 @@
 import React, {useState, ChangeEvent} from 'react';
 import {useHistory} from 'react-router-dom';
+import {useSelector} from 'react-redux';
 
 //Redux stuff
 import {useAppDispatch} from '../../app/store';
-import {registered} from '../../app/reducers/registerSlice';
+import {
+  selectAuth,
+  setRegistered,
+  isAuthenticated,
+} from '../../app/reducers/authSlice';
 
 // API stuff
 import {
@@ -49,7 +54,7 @@ const Register: React.FunctionComponent = () => {
       register(payload).then(response => {
         switch (response.status) {
           case 200:
-            dispatch(registered());
+            dispatch(setRegistered);
             history.push('/challenges');
             break;
           case 400:
@@ -67,39 +72,45 @@ const Register: React.FunctionComponent = () => {
     }
   };
 
-  return (
-    <WithMenuDialog
-      size={menuDialogSize.small}
-      pageTitle={'Register'}
-      menuTitle={'Register'}
-      topText={'Please enter the following details to continue'}>
-      <WithContentContainer>
-        <TextInput
-          label={'Nickname: '}
-          required={true}
-          autoFocus={true}
-          autoComplete={'name'}
-          name={'nickname'}
-          input_type={'text'}
-          placeholder={'Nickname'}
-          value={nickname}
-          onChange={updateNickname}
-        />
-        <TextInput
-          label={'Email: '}
-          required={true}
-          autoFocus={false}
-          autoComplete={'email'}
-          name={'email'}
-          input_type={'email'}
-          placeholder={'Email'}
-          value={email}
-          onChange={updateEmail}
-        />
-      </WithContentContainer>
-      <WithMenuButton onClick={handleRegistration}>Save</WithMenuButton>
-    </WithMenuDialog>
-  );
+  const authState = useSelector(selectAuth);
+
+  if (authState === isAuthenticated.loggedIn) {
+    return (
+      <WithMenuDialog
+        size={menuDialogSize.small}
+        pageTitle={'Register'}
+        menuTitle={'Register'}
+        topText={'Please enter the following details to continue'}>
+        <WithContentContainer>
+          <TextInput
+            label={'Nickname: '}
+            required={true}
+            autoFocus={true}
+            autoComplete={'name'}
+            name={'nickname'}
+            input_type={'text'}
+            placeholder={'Nickname'}
+            value={nickname}
+            onChange={updateNickname}
+          />
+          <TextInput
+            label={'Email: '}
+            required={true}
+            autoFocus={false}
+            autoComplete={'email'}
+            name={'email'}
+            input_type={'email'}
+            placeholder={'Email'}
+            value={email}
+            onChange={updateEmail}
+          />
+        </WithContentContainer>
+        <WithMenuButton onClick={handleRegistration}>Save</WithMenuButton>
+      </WithMenuDialog>
+    );
+  } else {
+    return <div> {history.push('/')} </div>;
+  }
 };
 
 export default Register;

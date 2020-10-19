@@ -2,13 +2,11 @@ import {configureStore} from '@reduxjs/toolkit';
 import {useDispatch} from 'react-redux';
 import {authSlice} from './reducers/authSlice';
 import {startTimeSlice} from './reducers/startTimeSlice';
-import {registeredSlice} from './reducers/registerSlice';
 
 const store = configureStore({
   reducer: {
     authenticator: authSlice.reducer,
     startTimesetter: startTimeSlice.reducer,
-    registered: registeredSlice.reducer
   },
 });
 

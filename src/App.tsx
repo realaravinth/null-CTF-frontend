@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React from 'react';
 
-// Components:
+// Componento:
+//
 import Heading from './components/Heading';
 import Navbar from './components/Navbar';
 import BanMobileDevices from './components/Ncurses/BanMobileDecives';
@@ -9,16 +10,7 @@ import Routes from './components/Routes';
 // Stylesheets:
 import './ncurses.css';
 
-enum isAuthenticated {
-  loggedOut,
-  loggedIn,
-  Registered,
-  challengeReady,
-}
-
 const App = () => {
-  const [userAuth, setUserAuth] = useState(isAuthenticated.loggedOut);
-
   if (window.matchMedia('(max-width: 1000px)').matches) {
     return (
       <div className="App">

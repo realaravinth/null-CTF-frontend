@@ -2,26 +2,46 @@ import {createSlice} from '@reduxjs/toolkit';
 import {RootState} from '../store';
 
 export interface authState {
-  value: boolean;
+  value: isAuthenticated;
 }
+
+export enum isAuthenticated {
+  loggedOut,
+  loggedIn,
+  registered,
+  challengeReady,
+}
+
+const initialState: authState = {
+  value: isAuthenticated.loggedOut,
+};
 
 export const authSlice = createSlice({
   name: 'auth',
-  initialState: {
-    value: false,
-  },
+  initialState,
   reducers: {
-    log_in: state => {
-      state.value = true;
+    setLoggedIn: state => {
+      state.value = isAuthenticated.loggedIn;
     },
-    log_out: state => {
-      state.value = false;
+    setLoggedOut: state => {
+      state.value = isAuthenticated.loggedOut;
+    },
+    setRegistered: state => {
+      state.value = isAuthenticated.registered;
+    },
+    setChallengeReady: state => {
+      state.value = isAuthenticated.challengeReady;
     },
   },
 });
 
-export const {log_in, log_out} = authSlice.actions;
+export const {
+  setLoggedIn,
+  setLoggedOut,
+  setRegistered,
+  setChallengeReady,
+} = authSlice.actions;
 
-//export const selectAuth = (state: RootState) => state.auth.value;
+export const selectAuth = (state: RootState) => state.authenticator.value;
 
 export default authSlice.reducer;
