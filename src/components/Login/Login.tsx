@@ -1,5 +1,5 @@
-import React, {useState, ChangeEvent, MouseEvent} from 'react';
-import {useHistory} from 'react-router-dom';
+import React, {useState, ChangeEvent} from 'react';
+import {Redirect, useHistory} from 'react-router-dom';
 import {useSelector} from 'react-redux';
 
 // app stuff
@@ -108,7 +108,7 @@ const Login: React.FunctionComponent = () => {
       </WithMenuDialog>
     );
   } else {
-    return <div> {history.push('/')} </div>;
+    return <Redirect to="/" />;
   }
 };
 

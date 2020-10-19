@@ -1,5 +1,5 @@
 import React, {useState, ChangeEvent} from 'react';
-import {useHistory} from 'react-router-dom';
+import {useHistory, Redirect} from 'react-router-dom';
 import {useSelector} from 'react-redux';
 
 //Redux stuff
@@ -33,6 +33,7 @@ const Register: React.FunctionComponent = () => {
   const [email, setEmail] = useState('');
   const dispatch = useAppDispatch();
   const history = useHistory();
+  const authState = useSelector(selectAuth);
 
   const updateNickname = (event: ChangeEvent<HTMLInputElement>) => {
     setNickname(event.target.value);
@@ -72,8 +73,6 @@ const Register: React.FunctionComponent = () => {
     }
   };
 
-  const authState = useSelector(selectAuth);
-
   if (authState === isAuthenticated.loggedIn) {
     return (
       <WithMenuDialog
@@ -109,7 +108,7 @@ const Register: React.FunctionComponent = () => {
       </WithMenuDialog>
     );
   } else {
-    return <div> {history.push('/')} </div>;
+    return <Redirect to="/" />;
   }
 };
 
