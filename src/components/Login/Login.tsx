@@ -13,6 +13,9 @@ import {
   loginRequestPayload,
 } from '../../app/API/login';
 
+//utils
+import isBlankString from '../../app/utils/blankString';
+
 //Componenets:
 import TextInput from '../Ncurses/TextInput';
 import WithMenuButton from '../Ncurses/wrapper/WithMenuButton';
@@ -26,8 +29,8 @@ const Login: React.FunctionComponent = () => {
   const dispatch = useAppDispatch();
   let history = useHistory();
 
-  const logingHandler = () => {
-    if (userID === '') {
+  const logingHandler = (e: React.MouseEvent) => {
+    if (isBlankString(userID)) {
       alert('uer ID cant be empty');
     } else {
       const payload: loginRequestPayload = {
@@ -91,10 +94,8 @@ const Login: React.FunctionComponent = () => {
         />
       </WithContentContainer>
 
-      <WithMenuButton>
-        <div onClick={logingHandler}>
-          <span>L</span>og in
-        </div>
+      <WithMenuButton onClick={logingHandler}>
+        <span>L</span>og in
       </WithMenuButton>
     </WithMenuDialog>
   );

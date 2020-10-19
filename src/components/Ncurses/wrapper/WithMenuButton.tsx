@@ -1,7 +1,11 @@
 import React from 'react';
 
-const WithMenuButton: React.FunctionComponent = ({children}) => (
-  <div className="btn">{children}</div>
-);
+type withMenuButtonProps = {
+  onClick(e: React.MouseEvent): void;
+};
+
+const WithMenuButton: React.FunctionComponent<withMenuButtonProps> = (
+  {children, onClick},
+) => <div className="btn" onClick={onClick}>{children}</div>;
 
 export default WithMenuButton;

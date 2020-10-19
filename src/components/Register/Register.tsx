@@ -12,6 +12,9 @@ import {
   register,
 } from '../../app/API/register';
 
+//utils
+import isBlankString from '../../app/utils/blankString';
+
 //Componenets:
 import TextInput from '../Ncurses/TextInput';
 import WithContentContainer from '../Ncurses/wrapper/WithContentContainer';
@@ -22,40 +25,46 @@ import WithMenuButton from '../Ncurses/wrapper/WithMenuButton';
 
 const Register: React.FunctionComponent = () => {
   const [nickname, setNickname] = useState('');
+  const [email, setEmail] = useState('');
+  const dispatch = useAppDispatch();
+  const history = useHistory();
+
   const updateNickname = (event: ChangeEvent<HTMLInputElement>) => {
     setNickname(event.target.value);
   };
-  const dispatch = useAppDispatch();
-  const history = useHistory();
-  const [email, setEmail] = useState('');
+
   const updateEmail = (event: ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
   };
 
-  const handleRegistration = (nickname: string, email: string) => {
-    const payload: registerationRequestPayload = {
-      nickname,
-      email,
-    };
-
-    register(payload).then(response => {
-      switch (response.status) {
-        case 200:
-          dispatch(registered());
-          history.push('/challenges');
-          break;
-        case 400:
-          if (response.body !== null) {
-            response.body.map((data: registerationResponsePayload) => {
-              alert('Somthing happened');
-              data.error.map(duplicateValue =>
-                alert(`looks like ${duplicateValue} is already taken`),
-              );
-            });
-          }
-          break;
-      }
-    });
+  const handleRegistration = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (isBlankString(email) || isBlankString(nickname)) {
+      alert('email and nickname cant be empty');
+    } else {
+      const payload: registerationRequestPayload = {
+        nickname,
+        email,
+      };
+      register(payload).then(response => {
+        switch (response.status) {
+          case 200:
+            dispatch(registered());
+            history.push('/challenges');
+            break;
+          case 400:
+            if (response.body !== null) {
+              response.body.map((data: registerationResponsePayload) => {
+                alert('Somthing happened');
+                data.error.map(duplicateValue =>
+                  alert(`looks like ${duplicateValue} is already taken`),
+                );
+              });
+            }
+            break;
+        }
+      });
+    }
   };
 
   return (
@@ -88,7 +97,7 @@ const Register: React.FunctionComponent = () => {
           onChange={updateEmail}
         />
       </WithContentContainer>
-      <WithMenuButton>Save</WithMenuButton>
+      <WithMenuButton onClick={handleRegistration}>Save</WithMenuButton>
     </WithMenuDialog>
   );
 };
