@@ -96,7 +96,8 @@
 				{
 					"challenges" : [{
 							"id": integer,
-							"challenge": string,
+							"challengeTitle": string,
+							"challengeBody": string,
 							"score" : integer
 						}...]
 				}
