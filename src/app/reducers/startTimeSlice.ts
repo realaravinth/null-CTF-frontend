@@ -1,21 +1,18 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
-//import State from '../state';
+import {RootState} from '../store';
 
-export interface startTimeState {
-  value: Time;
-}
+export type startTimeState = {
+  value: null | number;
+};
 
-enum Time {
-  null,
-  number,
-}
+const initialState: startTimeState = {
+  value: null,
+};
 
 export const startTimeSlice = createSlice({
   name: 'startTime',
-  initialState: {
-    value: Time.null,
-  },
+  initialState,
   reducers: {
     set_start_time: (state, action: PayloadAction<number>) => {
       state.value = action.payload;
@@ -25,6 +22,7 @@ export const startTimeSlice = createSlice({
 
 export const {set_start_time} = startTimeSlice.actions;
 
-//export const selectstartTime = (state: State) => state.startTime.value;
+export const selectstartTime = (state: RootState) =>
+  state.startTimesetter.value;
 
 export default startTimeSlice.reducer;
