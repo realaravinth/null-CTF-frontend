@@ -53,7 +53,7 @@ const Login: React.FunctionComponent = () => {
               alert('Logged in');
               body.map((time: loginResponsePayload) => {
                 dispatch(set_start_time(parseInt(time.startTime)));
-                dispatch(setLoggedIn);
+                dispatch(setLoggedIn());
                 history.push('/register');
               });
               break;

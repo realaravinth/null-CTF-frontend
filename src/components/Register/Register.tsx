@@ -55,7 +55,7 @@ const Register: React.FunctionComponent = () => {
       register(payload).then(response => {
         switch (response.status) {
           case 200:
-            dispatch(setRegistered);
+            dispatch(setRegistered());
             history.push('/challenges');
             break;
           case 400:
