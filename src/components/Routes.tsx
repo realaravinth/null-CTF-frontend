@@ -6,6 +6,7 @@ import Leaderboard from './Leaderboard';
 import Register from './Register';
 import Challenges from './Challenges';
 import Root from './Root';
+import Logout from './Logout';
 
 const Routes: React.FunctionComponent = () => (
   <Switch>
@@ -13,6 +14,7 @@ const Routes: React.FunctionComponent = () => (
     <Route component={Register} path="/register" />
     <Route component={Challenges} path="/challenges" />
     <Route component={Login} path="/login" />
+    <Route component={Logout} path="/logout" />
     <Route component={Root} exact path="/" />
   </Switch>
 );

@@ -1,6 +1,8 @@
 import API from './api';
 
-export const logout = () =>
+const logout = () =>
   fetch(API.LOGOUT, {
     credentials: 'include',
   }).then(response => response.json());
+
+export default logout;
