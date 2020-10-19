@@ -31,7 +31,7 @@ const App = () => {
     return (
       <div className="App">
         <Navbar />
-        <Heading isChallengeStarted={true} /> //replace this with authenticated
+        <Heading />
         <div className="container">
           <Routes />
         </div>

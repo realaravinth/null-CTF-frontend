@@ -5,11 +5,7 @@ import {Link} from 'react-router-dom';
 import CountDown from './CountDown';
 import AsciiArt from './../AsciiArt';
 
-type HeadingProps = {
-  isChallengeStarted: boolean;
-};
-
-const Heading: React.FC<HeadingProps> = ({isChallengeStarted}) => (
+const Heading: React.FC = () => (
   <div className="mainheader">
     <Link to="/">
       <AsciiArt />
