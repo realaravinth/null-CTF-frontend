@@ -1,36 +1,32 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
 
-const Navbar: React.FC = () => (
-  <ul className="navbar">
-    <NavChallenges />
-    <NavLeaderboard />
-    <NavLogout />
-  </ul>
-);
+import {useSelector} from 'react-redux';
 
-const NavChallenges: React.FC = () => {
-  return (
-    <li>
-      <NavLink to="/challenges">/challenges</NavLink>
-    </li>
-  );
-};
+import {selectAuth, isAuthenticated} from '../../app/reducers/authSlice';
 
-const NavLeaderboard: React.FC = () => {
-  return (
-    <li>
-      <NavLink to="/leaderboard">/leaderboard</NavLink>
-    </li>
-  );
-};
+import NavChallenges from './NavChallenges';
+import NavLeaderboard from './NavLeaderboard';
+import NavLogout from './NavLogout';
+import NavLogin from './NavLogin';
 
-const NavLogout: React.FC = () => {
-  return (
-    <li>
-      <NavLink to="/logout">/logout</NavLink>
-    </li>
-  );
+const Navbar: React.FC = () => {
+  const authState = useSelector(selectAuth);
+
+  if (authState === isAuthenticated.challengeReady) {
+    return (
+      <ul className="navbar">
+        <NavChallenges />
+        <NavLeaderboard />
+        <NavLogout />
+      </ul>
+    );
+  } else {
+    return (
+      <ul className="navbar">
+        <NavLogin />
+      </ul>
+    );
+  }
 };
 
 export default Navbar;
