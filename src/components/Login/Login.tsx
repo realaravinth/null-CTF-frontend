@@ -1,8 +1,13 @@
 import React, {useState, ChangeEvent, MouseEvent} from 'react';
 import {useHistory} from 'react-router-dom';
+import {useSelector} from 'react-redux';
 
 // app stuff
-import {setLoggedIn} from '../../app/reducers/authSlice';
+import {
+  selectAuth,
+  setLoggedIn,
+  isAuthenticated,
+} from '../../app/reducers/authSlice';
 import {set_start_time} from '../../app/reducers/startTimeSlice';
 import {useAppDispatch} from '../../app/store';
 
@@ -27,9 +32,11 @@ import WithMenuDialog, {
 const Login: React.FunctionComponent = () => {
   const [userID, setUserID] = useState('');
   const dispatch = useAppDispatch();
+  const authVal = useSelector(selectAuth);
   let history = useHistory();
 
   const logingHandler = (e: React.MouseEvent) => {
+    e.preventDefault();
     if (isBlankString(userID)) {
       alert('uer ID cant be empty');
     } else {
@@ -74,32 +81,35 @@ const Login: React.FunctionComponent = () => {
 
   const updateUserID = (event: ChangeEvent<HTMLInputElement>) =>
     setUserID(event.target.value);
+  if (authVal === isAuthenticated.loggedOut) {
+    return (
+      <WithMenuDialog
+        size={menuDialogSize.small}
+        menuTitle={'Log in'}
+        pageTitle={'Log in'}
+        topText={'Please Log in to continue'}>
+        <WithContentContainer>
+          <TextInput
+            label={'User ID: '}
+            required={true}
+            autoFocus={true}
+            autoComplete={'username'}
+            name={'userId'}
+            input_type={'text'}
+            placeholder={'User ID'}
+            value={userID}
+            onChange={updateUserID}
+          />
+        </WithContentContainer>
 
-  return (
-    <WithMenuDialog
-      size={menuDialogSize.small}
-      menuTitle={'Log in'}
-      pageTitle={'Log in'}
-      topText={'Please Log in to continue'}>
-      <WithContentContainer>
-        <TextInput
-          label={'User ID: '}
-          required={true}
-          autoFocus={true}
-          autoComplete={'username'}
-          name={'userId'}
-          input_type={'text'}
-          placeholder={'User ID'}
-          value={userID}
-          onChange={updateUserID}
-        />
-      </WithContentContainer>
-
-      <WithMenuButton onClick={logingHandler}>
-        <span>L</span>og in
-      </WithMenuButton>
-    </WithMenuDialog>
-  );
+        <WithMenuButton onClick={logingHandler}>
+          <span>L</span>og in
+        </WithMenuButton>
+      </WithMenuDialog>
+    );
+  } else {
+    return <div> {history.push('/')} </div>;
+  }
 };
 
 export default Login;
