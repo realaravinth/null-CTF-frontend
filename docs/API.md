@@ -21,7 +21,8 @@
 			* schema:
 				```
 				{
-					"startTime" : integer //time in UNIX epoch
+					"startTime" : integer, //time in UNIX epoch
+					"registered" : boolean
 				}
 				```
 		* `401`:
