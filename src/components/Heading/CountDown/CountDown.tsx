@@ -5,7 +5,7 @@ import {useHistory} from 'react-router-dom';
 import {selectAuth, isAuthenticated} from '../../../app/reducers/authSlice';
 import {selectstartTime} from '../../../app/reducers/startTimeSlice';
 
-const ABSOLUTE_CHALLENGE_DURATION: number = 0.1 * 60; //in seconds
+const ABSOLUTE_CHALLENGE_DURATION: number = 25 * 60; //in seconds
 
 const CountDown: React.FC = () => {
   const authVal = useSelector(selectAuth);

@@ -1,4 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
+
 import {RootState} from '../store';
 
 export interface authState {
@@ -13,7 +14,7 @@ export enum isAuthenticated {
 }
 
 const initialState: authState = {
-  value: isAuthenticated.loggedOut,
+  value: isAuthenticated.challengeReady,
 };
 
 export const authSlice = createSlice({

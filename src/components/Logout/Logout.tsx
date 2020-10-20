@@ -17,8 +17,8 @@ const Logout: React.FC = () => {
   const dispatch = useAppDispatch();
 
   if (authState === isAuthenticated.challengeReady) {
-    logout();
     dispatch(setLoggedOut());
+    logout();
   }
 
   return <Redirect to="/login" />;
