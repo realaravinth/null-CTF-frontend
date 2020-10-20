@@ -98,8 +98,13 @@
 							"id": integer,
 							"challengeTitle": string,
 							"challengeBody": string,
+							"challengeAnswer": answer
 							"score" : integer
 						}...]
+				}
+				enum answer = {
+					null, // when user hasn't answered the challenge yet
+					answer // when user has answered the question
 				}
 					```
 		* `401`:
@@ -142,6 +147,7 @@
 			* description: conflict --- double submit of answer
 		* `501`:
 			* description: internal server error
+
 6. #### `/api/leaderboard`:
 	* ##### `GET`:
 		* summary: end point for getting leaderboard
@@ -161,6 +167,33 @@
 					"user" : {
 							"rank": integer
 						}
+				}
+				```
+		* `401`:
+			* description: unauthorized --- user not logged in
+		* `403`:
+			* description: forbidden --- challenge yet to start 
+		* `501`:
+			* description: internal server error
+
+6. #### `/api/get-state`:
+	* ##### `GET`:
+		* summary: end point for getting leaderboard
+	* ##### responses:
+		* `200`:
+			* description: returns top 10 contestants' name, score and
+			rank along with the requesting user's score and rank
+			* content: `application/json`
+			* schema:
+				```
+				{
+					"state" : state 
+				}
+
+				enum state = {
+					 loggedIn,
+					 registered,
+					 loggedOut
 				}
 				```
 		* `401`:

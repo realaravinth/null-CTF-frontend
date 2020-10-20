@@ -6,9 +6,8 @@ export type startTimeState = {
   value: null | number;
 };
 
-// TODO change init to null  in prod
 const initialState: startTimeState = {
-  value: Math.floor(Date.now() / 1000)
+  value: null, //Math.floor(Date.now() / 1000)
 };
 
 export const startTimeSlice = createSlice({
