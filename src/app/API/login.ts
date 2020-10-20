@@ -8,7 +8,7 @@ export type loginResponsePayload = {
   startTime: string;
 };
 
-export const login = (payload: loginRequestPayload) =>
+export const login = async (payload: loginRequestPayload) =>
   fetch(API.LOGIN, {
     method: 'post',
     headers: {

@@ -89,13 +89,12 @@ div.mainheader div.timer {
 }
 
 div.menudialog {
-  position: relative;
   max-width: 480px;
   margin: auto;
   background: #ccc;
   padding: 10px 4px 8px 4px;
   box-shadow: 16px 16px 0px 0px #000;
-  margin-top: 90px;
+  margin-top: 150px;
 }
 
 div.menudialog div.menuouter div.menuheader {
@@ -361,10 +360,21 @@ div.menudialog.container {
 
 .menudialog.menudialogbig {
   max-width: 1200px;
-  margin-top: 40px;
+  margin-top: 70px;
 }
 
 .menudialog.menudialogmobile {
   margin-top: 20vh;
   width: 40vh;
+}
+
+.menudialog.menudialogloading {
+  margin-top: 20vh;
+  max-width: 400px;
+  height: 35px;
+}
+
+
+.menuouter.menuouterloading{
+  height:  7px;
 }

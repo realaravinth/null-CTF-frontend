@@ -5,6 +5,7 @@ type apiEndpoints = {
   LOGOUT: string;
   CHECK_RESPONSE: string;
   LEADERBOARD: string;
+  GET_STATE: string;
 };
 
 const API: apiEndpoints = {
@@ -14,6 +15,7 @@ const API: apiEndpoints = {
   LOGOUT: '/api/logout',
   CHECK_RESPONSE: '/api/check-response',
   LEADERBOARD: '/api/leaderboard',
+  GET_STATE: '/api/get-state',
 };
 
 export default API;

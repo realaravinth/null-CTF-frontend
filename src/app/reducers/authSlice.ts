@@ -14,7 +14,7 @@ export enum isAuthenticated {
 }
 
 const initialState: authState = {
-  value: isAuthenticated.loggedOut,
+  value: isAuthenticated.loggedIn,
 };
 
 export const authSlice = createSlice({

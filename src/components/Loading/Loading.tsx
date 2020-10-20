@@ -1,5 +1,7 @@
 import React from 'react';
 
+import ProgressBar from './ProgressBar';
+
 import WithContentContainer from '../Ncurses/wrapper/WithContentContainer';
 import WithMenuDialog, {
   menuDialogSize,
@@ -7,13 +9,11 @@ import WithMenuDialog, {
 
 const Loading: React.FC = () => (
   <WithMenuDialog
-    size={menuDialogSize.mobile}
+    size={menuDialogSize.loading}
     menuTitle={'Loading'}
-    topText={'Please wait while we set things up'}
+    topText={''}
     pageTitle={'Loading'}>
-    <WithContentContainer>
-      <p></p>
-    </WithContentContainer>
+    <ProgressBar completed={100} />
   </WithMenuDialog>
 );
 

@@ -11,6 +11,7 @@ export enum menuDialogSize {
   big,
   small,
   mobile,
+  loading,
 }
 
 type WithMenuDialogProps = {
@@ -35,9 +36,13 @@ const WithMenuDialog: React.FC<WithMenuDialogProps> = ({
   if (size === menuDialogSize.mobile) {
     classes += ' menudialogmobile';
   }
+  if (size === menuDialogSize.loading) {
+    classes += ' menudialogloading';
+  }
+
   return (
     <div className={classes}>
-      <WithMenuOuter>
+      <WithMenuOuter size={size}>
         <MenuTitle title={menuTitle} />
         <MenuTopText text={topText} />
         <PageTitle location={pageTitle} />

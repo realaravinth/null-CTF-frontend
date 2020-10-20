@@ -7,6 +7,7 @@ import Register from './Register';
 import Challenges from './Challenges';
 import Root from './Root';
 import Logout from './Logout';
+import Loading from './Loading';
 
 const Routes: React.FunctionComponent = () => (
   <Switch>
@@ -15,6 +16,7 @@ const Routes: React.FunctionComponent = () => (
     <Route component={Challenges} path="/challenges" />
     <Route component={Login} path="/login" />
     <Route component={Logout} path="/logout" />
+    <Route component={Loading} exact path="/loading" />
     <Route component={Root} exact path="/" />
   </Switch>
 );
