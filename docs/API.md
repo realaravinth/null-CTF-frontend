@@ -103,10 +103,11 @@
 							"score" : integer
 						}...]
 				}
-				enum answer = {
-					null, // when user hasn't answered the challenge yet
-					answer // when user has answered the question
-				}
+				// where answer is:
+				//enum answer = {
+				//	null, // when user hasn't answered the challenge yet
+				//	answer // when user has answered the question
+				//}
 					```
 		* `401`:
 			* description: unauthorized --- unauthenticated requests for challenges
@@ -190,12 +191,12 @@
 				{
 					"state" : state 
 				}
-
-				enum state = {
-					 loggedIn,
-					 registered,
-					 loggedOut
-				}
+				// where state is:
+				//enum state = {
+				//	 loggedIn,
+				//	 registered,
+				//	 loggedOut
+				//}
 				```
 		* `401`:
 			* description: unauthorized --- user not logged in
