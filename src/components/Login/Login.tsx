@@ -91,7 +91,6 @@ const Login: React.FunctionComponent = () => {
         <WithContentContainer>
           <TextInput
             label={'User ID: '}
-            required={true}
             autoFocus={true}
             autoComplete={'username'}
             name={'userId'}
@@ -99,6 +98,7 @@ const Login: React.FunctionComponent = () => {
             placeholder={'User ID'}
             value={userID}
             onChange={updateUserID}
+            required={true}
           />
         </WithContentContainer>
 
