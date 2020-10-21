@@ -374,7 +374,18 @@ div.menudialog.container {
   height: 35px;
 }
 
+.menuouter.menuouterloading {
+  height: 7px;
+}
 
-.menuouter.menuouterloading{
-  height:  7px;
+.challengeBody a {
+  color: red;
+}
+
+.challengeBody a::after {
+  content: '>';
+}
+
+.challengeBody a::before {
+  content: '<';
 }
