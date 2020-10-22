@@ -5,11 +5,12 @@ import {useSelector} from 'react-redux';
 //redux stuff
 import {selectAuth, isAuthenticated} from '../../app/reducers/authSlice';
 
+import {selectChallenge, addAnswer, currentQAnswer, answerUpdate} from '../../app/reducers/challengeSlice';
+
+import {useAppDispatch} from '../../app/store';
 //utils
 import isBlankString from '../../app/utils/blankString';
 
-//Componenets:
-import challenges, {challenge} from '../../res/challenges';
 
 import WithMenuButton, {
   WithMenuButtonSmall,
@@ -17,29 +18,8 @@ import WithMenuButton, {
 import MenuNote from '../Ncurses/wrapper/WithMenuNote';
 import TextInput from '../Ncurses/TextInput';
 
-const submitButtonSmall = document.getElementById('falcon');
-if (submitButtonSmall !== null) {
-  const originalOnclick = submitButtonSmall.getAttribute('onclick');
-}
-const hint = document.getElementById('yoda');
-const makeVisible = (id: string) => {
-  const element = document.getElementById(id);
-  if (element !== null) element.className = 'show';
-};
 const binarySet = new RegExp('^[0-1]+$');
-let firstRecurstion = true;
-const askNicely = () => makeVisible('flag');
-//const checkBinaryHandler = () => {
-//  const userAnswer = document.getElementById('skywalker').value;
-//  if (binarySet.test(userAnswer)) {
-//    makeVisible('yoda');
-//  } else if (firstRecurstion) {
-//    submitButtonSmall.setAttribute('onclick', originalOnclick);
-//    firstRecurstion = false;
-//    checkBinaryHandler();
-//  } else {
-//  }
-//};
+
 export type ShowQuestionProps = {
   id: number;
   body: string;
@@ -51,9 +31,12 @@ enum showHintVals {
   showBinToDecHint,
 }
 const ShowQuestion: React.FC<ShowQuestionProps> = ({id, body}) => {
+
+  const dispatch = useAppDispatch();
   const [userAnswer, setUserAnswer] = useState('');
   const [showHint, setShowHint] = useState(showHintVals.noHint);
 
+  const challenges = useSelector(selectChallenge);
   const toggleHint = (e: React.MouseEvent) => {
     e.preventDefault();
     if (showHint === showHintVals.noHint) {
@@ -63,12 +46,12 @@ const ShowQuestion: React.FC<ShowQuestionProps> = ({id, body}) => {
 
   const submitHandler = (e: React.MouseEvent) => {
     e.preventDefault();
-    if (isBlankString(userAnswer)) {
+    if (isBlankString(currentQAnswer(id))) {
       alert("can't be empty");
     } else {
-      if (binarySet.test(userAnswer)) {
+      if (binarySet.test(currentQAnswer(id))) {
         if (id === 1) {
-          if (binarySet.test(userAnswer)) {
+          if (binarySet.test(currentQAnswer(id))) {
             setShowHint(showHintVals.showBinToDecHint);
           }
         }
@@ -77,8 +60,13 @@ const ShowQuestion: React.FC<ShowQuestionProps> = ({id, body}) => {
       }
     }
   };
-  const updateUserAnswer = (event: React.ChangeEvent<HTMLInputElement>) =>
-    setUserAnswer(event.target.value);
+  const updateUserAnswer = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const payload: answerUpdate   = {
+      id,
+        challengeAnswer: event.target.value
+    }
+    dispatch(addAnswer(payload));
+  }
 
   let prelude;
   if (id === 1) {
@@ -91,6 +79,14 @@ const ShowQuestion: React.FC<ShowQuestionProps> = ({id, body}) => {
   } else {
     prelude = <div dangerouslySetInnerHTML={{__html: body}} />;
   }
+const currentQAnswer = (id: number) => {
+  if (challenges !== null)
+    if (challenges[id-1].challengeAnswer !== null){
+      return challenges[id-1].challengeAnswer;
+    }else return ' ';
+  else return ' ';
+};
+
 
   return (
     <div className="challengeBody">
@@ -104,7 +100,7 @@ const ShowQuestion: React.FC<ShowQuestionProps> = ({id, body}) => {
           input_type={'text'}
           autoComplete={'flag'}
           placeholder={'Flag'}
-          value={userAnswer}
+          value={currentQAnswer(id)}
           onChange={updateUserAnswer}
           required={true}
         />

@@ -1,4 +1,9 @@
-import {createSlice,nanoid, createAsyncThunk, PayloadAction} from '@reduxjs/toolkit';
+import {
+  createSlice,
+  nanoid,
+  createAsyncThunk,
+  PayloadAction,
+} from '@reduxjs/toolkit';
 
 import {RootState} from '../store';
 
@@ -20,20 +25,29 @@ const initialState: challengeState = {
   value: null,
 };
 
+export type answerUpdate = {
+  id: number;
+  challengeAnswer: string;
+};
+
 export const challengeSlice = createSlice({
   name: 'challenge',
   initialState,
   reducers: {
     addChallenge: (state, action: PayloadAction<challenge[]>) => {
-        state.value = action.payload;
+      state.value = action.payload;
     },
-    addAnswer: (state, action: PayloadAction<challenge>) => {
+    addAnswer: (state, action: PayloadAction<answerUpdate>) => {
       let prevState = state.value;
       if (prevState !== null) {
-        state.value = prevState.map(c => {
-          if (c.id === action.payload.id) return action.payload;
-          else return c;
-        });
+        prevState[action.payload.id -1].challengeAnswer  = action.payload.challengeAnswer;
+        state.value = prevState;
+//        //(c => {
+//          if (c.id === action.payload.id) {
+//            c.challengeAnswer = action.payload.challengeAnswer;
+//            return c;
+//          } else return c;
+//        });
       }
     },
   },
@@ -42,17 +56,23 @@ export const challengeSlice = createSlice({
 export const {addChallenge, addAnswer} = challengeSlice.actions;
 
 export const thunkedGetChallenges = () => (dispatch: any) =>
-  getChallenges().then((res) => {
-    if(res.status === 200 )
-      return res.json()}).then((res) =>
-      dispatch(addChallenge(res)));
-
+  getChallenges()
+    .then(res => {
+      if (res.status === 200) return res.json();
+    })
+    .then(res => dispatch(addChallenge(res)));
 
 export const fetchChallenges = () => async () => {
-  const response = await ( await getChallenges()).json();
+  const response = await (await getChallenges()).json();
   return response;
-}
+};
 
 export const selectChallenge = (state: RootState) => state.challenges.value;
+
+export const currentQAnswer = (c: challengeState, id: number) => {
+  if (c.value !== null)
+    return c.value[id].challengeAnswer;
+  else return '';
+};
 
 export default challengeSlice.reducer;

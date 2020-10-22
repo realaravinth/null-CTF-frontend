@@ -5,7 +5,13 @@ import {useSelector} from 'react-redux';
 //redux stuff
 import {selectAuth, isAuthenticated} from '../../app/reducers/authSlice';
 
-import {selectChallenge, addAnswer, fetchChallenges, thunkedGetChallenges, challenge} from '../../app/reducers/challengeSlice';
+import {
+  selectChallenge,
+  addAnswer,
+  fetchChallenges,
+  thunkedGetChallenges,
+  challenge,
+} from '../../app/reducers/challengeSlice';
 
 //Componenets:
 import ShowQuestion from './ShowQuestion';
@@ -20,26 +26,27 @@ import WithContentSidebarBody from '../Ncurses/wrapper/WithContentSidebarBody';
 
 import {useAppDispatch} from '../../app/store';
 
-
-
 const Challenges: React.FC = () => {
-
-
   const dispatch = useAppDispatch();
 
+  const challenges = useSelector(selectChallenge);
   const authState = useSelector(selectAuth);
   const [currentQ, setCurrentQ] = useState(1);
-  const [currentQBody, setCurrentQBody] = useState(
-  );
+  let init;
+  if (challenges !== null) {
+    init = challenges[0].challengeBody;
+  } else {
+    init = '<p> Loading...</p>';
+  }
+  const [currentQBody, setCurrentQBody] = useState(init);
 
-  const challenges = useSelector(selectChallenge);
   const setBody = (c: number) => {
-    if (challenges !== null){
-    challenges.forEach((i: challenge) => {
-      if (i.id === c) setCurrentQBody(i.challengeBody);
+    if (challenges !== null) {
+      challenges.forEach((i: challenge) => {
+        if (i.id === c) setCurrentQBody(i.challengeBody);
+      });
     }
-    )}};
-
+  };
 
   console.log(currentQBody);
   const viewQuestion = (c: number) => {
