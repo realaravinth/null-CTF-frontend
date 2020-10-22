@@ -1,6 +1,7 @@
 import API from './api';
 
-export const getChallenges = () =>
-  fetch(API.GET_CHALLENGES, {
+export const getChallenges = async () => {
+   return fetch(API.GET_CHALLENGES, {
     credentials: 'include',
-  }).then(response => response.json());
+  }).then(data => data.json());
+}

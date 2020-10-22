@@ -37,7 +37,7 @@ export const authSlice = createSlice({
       state.value = isAuthenticated.tooEarly;
     },
     setChallengeReady: state => {
-      state.value = isAuthenticated.challengeReady;
+      state.value = isAuthenticated.loggedOut;
     },
   },
 });

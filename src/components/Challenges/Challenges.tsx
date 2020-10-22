@@ -5,6 +5,8 @@ import {useSelector} from 'react-redux';
 //redux stuff
 import {selectAuth, isAuthenticated} from '../../app/reducers/authSlice';
 
+import {selectChallenge, addAnswer, fetchChallenges, thunkedGetChallenges, challenge} from '../../app/reducers/challengeSlice';
+
 //Componenets:
 import ShowQuestion from './ShowQuestion';
 import ShowTitles from './ShowTitles';
@@ -15,46 +17,28 @@ import WithMenuDialog, {
 } from '../Ncurses/wrapper/WithMenuDialog';
 import WithContentSidebar from '../Ncurses/wrapper/WithContentSidebar';
 import WithContentSidebarBody from '../Ncurses/wrapper/WithContentSidebarBody';
-import challenges, {challenge} from '../../res/challenges';
 
-const submitButton = document.getElementById('falcon');
-if (submitButton !== null) {
-  const originalOnclick = submitButton.getAttribute('onclick');
-}
-const hint = document.getElementById('yoda');
-const makeVisible = (id: string) => {
-  const element = document.getElementById(id);
-  if (element !== null) element.className = 'show';
-};
-const binarySet = new RegExp('^[0-1]+$');
-let firstRecurstion = true;
-const askNicely = () => makeVisible('flag');
-//const checkBinaryHandler = () => {
-//  const userAnswer = document.getElementById('skywalker').value;
-//  if (binarySet.test(userAnswer)) {
-//    makeVisible('yoda');
-//  } else if (firstRecurstion) {
-//    submitButton.setAttribute('onclick', originalOnclick);
-//    firstRecurstion = false;
-//    checkBinaryHandler();
-//  } else {
-//  }
-//};
+import {useAppDispatch} from '../../app/store';
 
 
 
 const Challenges: React.FC = () => {
+
+
+  const dispatch = useAppDispatch();
+
   const authState = useSelector(selectAuth);
   const [currentQ, setCurrentQ] = useState(1);
   const [currentQBody, setCurrentQBody] = useState(
-    challenges.challenges[0].challengeBody,
   );
 
-  
-  const setBody = (c: number) =>
-    challenges.challenges.forEach((i: challenge) => {
+  const challenges = useSelector(selectChallenge);
+  const setBody = (c: number) => {
+    if (challenges !== null){
+    challenges.forEach((i: challenge) => {
       if (i.id === c) setCurrentQBody(i.challengeBody);
-    });
+    }
+    )}};
 
 
   console.log(currentQBody);
@@ -62,7 +46,7 @@ const Challenges: React.FC = () => {
     setCurrentQ(c);
     setBody(c);
   };
-  if (authState === isAuthenticated.loggedIn) {
+  if (authState === isAuthenticated.challengeReady) {
     return (
       <WithMenuDialog
         size={menuDialogSize.big}

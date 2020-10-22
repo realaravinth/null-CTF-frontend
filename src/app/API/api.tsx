@@ -9,7 +9,7 @@ type apiEndpoints = {
 };
 
 const API: apiEndpoints = {
-  GET_CHALLENGES: '/api/get-challenges',
+  GET_CHALLENGES: 'http://localhost:8080/api/get-challenges',
   LOGIN: 'http://localhost:8080/api/login',
   REGISTER: '/api/register',
   LOGOUT: '/api/logout',

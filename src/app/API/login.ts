@@ -15,4 +15,4 @@ export const login = async (payload: loginRequestPayload) =>
       'Content-type': 'application/json; charset=UTF-8',
     },
     body: JSON.stringify(payload),
-  }).then(response => response.json());
+  });

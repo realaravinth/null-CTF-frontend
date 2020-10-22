@@ -5,11 +5,17 @@ import {useSelector} from 'react-redux';
 // app stuff
 import {
   selectAuth,
-  setLoggedIn,
+setChallengeReady,
   isAuthenticated,
 } from '../../app/reducers/authSlice';
 import {set_start_time} from '../../app/reducers/startTimeSlice';
 import {useAppDispatch} from '../../app/store';
+
+import {
+  selectChallenge,
+  thunkedGetChallenges,
+  addChallenge,
+} from '../../app/reducers/challengeSlice';
 
 // api stuff
 import {
@@ -38,32 +44,38 @@ const Login: React.FunctionComponent = () => {
   const logingHandler = (e: React.MouseEvent) => {
     e.preventDefault();
     if (isBlankString(userID)) {
-      alert('uer ID cant be empty');
+      alert('uesr ID cant be empty');
     } else {
       const payload: loginRequestPayload = {
         userID,
       };
 
       login(payload)
-        .then(response => response.json())
         .then(data => {
-          const body = data.body;
           switch (data.status) {
             case 200:
-              alert('Logged in');
-              body.map((time: loginResponsePayload) => {
-                dispatch(set_start_time(parseInt(time.startTime)));
-                dispatch(setLoggedIn());
-                history.push('/register');
-              });
+              data
+                .json()
+                .then(time =>
+                  dispatch(set_start_time(parseInt(time.startTime))),
+                );
+              fetch('http://localhost:8080/api/get-challenges', {
+                credentials: 'include',
+              })
+                .then(data => data.json())
+                .then(res => dispatch(addChallenge(res)));
+
+              dispatch(setChallengeReady());
               break;
             case 401:
               alert('invalid credentials');
               break;
             case 403:
-              body.map((time: loginResponsePayload) => {
-                dispatch(set_start_time(parseInt(time.startTime)));
-              });
+              data
+                .json()
+                .then(time =>
+                  dispatch(set_start_time(parseInt(time.startTime))),
+                );
               alert('you are early');
               break;
             case 501:
