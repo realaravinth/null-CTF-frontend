@@ -345,6 +345,7 @@ div.menudialog.container {
 
 .contentcolumned {
   display: flex;
+  height: 50vh;
 }
 
 .menusidebar {
@@ -361,9 +362,10 @@ div.menudialog.container {
 .menudialog.menudialogbig {
   max-width: 1200px;
   margin-top: 70px;
+  height: 60vh;
 }
 
-.menudialog.menudialogbig.menuouter {
+.menudialog.menudialogbig .menuouter {
   height: 55vh;
 }
 
@@ -397,6 +399,20 @@ div.menudialog.container {
 .menuoptions.menusidebar {
   width: 100%;
   display: flex;
+}
+
+.menuoptions.menusidebar {
+  border-top: 0px;
+  border-bottom: 0px;
+  cursor: pointer;
+}
+
+.menuoptions.menusidebar ul li {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+.menuoptions.menusidebar ul li:hover {
+  background-color: #b7b7b7;
 }
 
 #challenges {
@@ -434,4 +450,8 @@ div.menudialog.container {
   border-left: 1px solid #fff;
   border-right: 1px solid #000;
   cursor: pointer;
+}
+
+.btnSmall:hover {
+  background-color: #999;
 }
