@@ -70,7 +70,7 @@ const ShowQuestion: React.FC<ShowQuestionProps> = ({id, body}) => {
             res.json().then((data: any) => {
               if (data.isCorrect === true) {
                 dispatch(setHasAnswered(id));
-              }
+              } else { alert("wrong answer")}
             });
           } else if (res.status === 403) {
             res.json().then((data: any) => {

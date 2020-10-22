@@ -11,6 +11,7 @@ const CountDown: React.FC = () => {
   const authVal = useSelector(selectAuth);
   const startTime = useSelector(selectstartTime);
 
+  const history = useHistory();
   if (authVal !== isAuthenticated.challengeReady) return <div />;
 
   if (startTime === null) {
@@ -25,9 +26,9 @@ const CountDown: React.FC = () => {
   const CHALLENGE_DURATION: number = END_TIME - Math.floor(Date.now() / 1000); //relative time
   //calculating time:
   const initTimeinSeconds: number = CHALLENGE_DURATION % 60;
+  if (initTimeinSeconds < 0) history.push('/logout');
   const initTimeinMinutes: number =
     (CHALLENGE_DURATION - initTimeinSeconds) / 60;
-
   return (
     <CountDownNotNull
       initTimeinMinutes={initTimeinMinutes}
@@ -47,7 +48,6 @@ const CountDownNotNull: React.FC<CountDownNotNullProps> = ({
 }) => {
   const [timeInSeconds, setTimeInSeconds] = useState(initTimeinSeconds);
   const [timeInMinutes, setTimeInMinutes] = useState(initTimeinMinutes);
-  const history = useHistory();
 
   useEffect(() => {
     const timer = setTimeout(() => tick(), 1000);
@@ -55,7 +55,9 @@ const CountDownNotNull: React.FC<CountDownNotNullProps> = ({
     return () => clearTimeout(timer);
   });
 
+  const history = useHistory();
   const tick = () => {
+    if (timeInSeconds < 0) history.push('/logout');
     if (timeInSeconds === 1 && timeInMinutes === 0) {
       history.push('/logout');
     }
