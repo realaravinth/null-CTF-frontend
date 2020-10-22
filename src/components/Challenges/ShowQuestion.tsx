@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Redirect} from 'react-router-dom';
+import {useHistory, Redirect} from 'react-router-dom';
 import {useSelector} from 'react-redux';
 
 //redux stuff
@@ -38,6 +38,7 @@ enum showHintVals {
 const ShowQuestion: React.FC<ShowQuestionProps> = ({id, body}) => {
   const dispatch = useAppDispatch();
   const [userAnswer, setUserAnswer] = useState('');
+  const history = useHistory();
   const [showHint, setShowHint] = useState(showHintVals.noHint);
 
   const challenges = useSelector(selectChallenge);
@@ -64,9 +65,18 @@ const ShowQuestion: React.FC<ShowQuestionProps> = ({id, body}) => {
           id: id,
           userAnswer: currentQAnswer(id),
         });
-        checkResponse(payload).then((data: any) => {
-          if (data.isCorrect === true) {
-            dispatch(setHasAnswered(id));
+        checkResponse(payload).then(res => {
+          if (res.status === 200) {
+            res.json().then((data: any) => {
+              if (data.isCorrect === true) {
+                dispatch(setHasAnswered(id));
+              }
+            });
+          } else if (res.status === 403) {
+            res.json().then((data: any) => {
+              alert(data.error);
+              history.push("/logout")
+            });
           }
         });
       }

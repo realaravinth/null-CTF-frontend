@@ -8,4 +8,4 @@ export const checkResponse = (payload: string) =>
       'Content-type': 'application/json; charset=UTF-8',
     },
     body: payload,
-  }).then(response => response.json());
+  });
