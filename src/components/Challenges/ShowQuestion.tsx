@@ -5,12 +5,17 @@ import {useSelector} from 'react-redux';
 //redux stuff
 import {selectAuth, isAuthenticated} from '../../app/reducers/authSlice';
 
-import {selectChallenge, addAnswer, currentQAnswer, answerUpdate} from '../../app/reducers/challengeSlice';
-
+import {
+  selectChallenge,
+  setHasAnswered,
+  addAnswer,
+  currentQAnswer,
+  answerUpdate,
+} from '../../app/reducers/challengeSlice';
+import {checkResponse} from '../../app/API/checkResponse';
 import {useAppDispatch} from '../../app/store';
 //utils
 import isBlankString from '../../app/utils/blankString';
-
 
 import WithMenuButton, {
   WithMenuButtonSmall,
@@ -31,7 +36,6 @@ enum showHintVals {
   showBinToDecHint,
 }
 const ShowQuestion: React.FC<ShowQuestionProps> = ({id, body}) => {
-
   const dispatch = useAppDispatch();
   const [userAnswer, setUserAnswer] = useState('');
   const [showHint, setShowHint] = useState(showHintVals.noHint);
@@ -56,17 +60,25 @@ const ShowQuestion: React.FC<ShowQuestionProps> = ({id, body}) => {
           }
         }
       } else {
-        alert('submit');
+        const payload = JSON.stringify({
+          id: id,
+          userAnswer: currentQAnswer(id),
+        });
+        checkResponse(payload).then((data: any) => {
+          if (data.isCorrect === true) {
+            dispatch(setHasAnswered(id));
+          }
+        });
       }
     }
   };
   const updateUserAnswer = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const payload: answerUpdate   = {
+    const payload: answerUpdate = {
       id,
-        challengeAnswer: event.target.value
-    }
+      challengeAnswer: event.target.value,
+    };
     dispatch(addAnswer(payload));
-  }
+  };
 
   let prelude;
   if (id === 1) {
@@ -79,14 +91,13 @@ const ShowQuestion: React.FC<ShowQuestionProps> = ({id, body}) => {
   } else {
     prelude = <div dangerouslySetInnerHTML={{__html: body}} />;
   }
-const currentQAnswer = (id: number) => {
-  if (challenges !== null)
-    if (challenges[id-1].challengeAnswer !== null){
-      return challenges[id-1].challengeAnswer;
-    }else return ' ';
-  else return ' ';
-};
-
+  const currentQAnswer = (id: number) => {
+    if (challenges !== null)
+      if (challenges[id - 1].challengeAnswer !== null) {
+        return challenges[id - 1].challengeAnswer;
+      } else return ' ';
+    else return ' ';
+  };
 
   return (
     <div className="challengeBody">

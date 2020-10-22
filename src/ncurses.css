@@ -385,7 +385,11 @@ div.menudialog.container {
 }
 
 .challengeBody a {
-  color: red;
+  color: #f00000;
+}
+
+.challengeBody a:hover {
+  color: maroon;
 }
 
 .challengeBody a::after {

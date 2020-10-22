@@ -19,6 +19,7 @@ export type challenge = {
   challengeBody: string;
   challengeAnswer: string;
   score: number;
+  hasAnswered: boolean;
 };
 
 const initialState: challengeState = {
@@ -40,20 +41,28 @@ export const challengeSlice = createSlice({
     addAnswer: (state, action: PayloadAction<answerUpdate>) => {
       let prevState = state.value;
       if (prevState !== null) {
-        prevState[action.payload.id -1].challengeAnswer  = action.payload.challengeAnswer;
+        prevState[action.payload.id - 1].challengeAnswer =
+          action.payload.challengeAnswer;
         state.value = prevState;
-//        //(c => {
-//          if (c.id === action.payload.id) {
-//            c.challengeAnswer = action.payload.challengeAnswer;
-//            return c;
-//          } else return c;
-//        });
+        //        //(c => {
+        //          if (c.id === action.payload.id) {
+        //            c.challengeAnswer = action.payload.challengeAnswer;
+        //            return c;
+        //          } else return c;
+        //        });
+      }
+    },
+    setHasAnswered: (state, action: PayloadAction<number>) => {
+      let prevState = state.value;
+      if (prevState !== null) {
+        prevState[action.payload].hasAnswered = true;
+        state.value = prevState;
       }
     },
   },
 });
 
-export const {addChallenge, addAnswer} = challengeSlice.actions;
+export const {addChallenge, setHasAnswered, addAnswer} = challengeSlice.actions;
 
 export const thunkedGetChallenges = () => (dispatch: any) =>
   getChallenges()
@@ -70,8 +79,7 @@ export const fetchChallenges = () => async () => {
 export const selectChallenge = (state: RootState) => state.challenges.value;
 
 export const currentQAnswer = (c: challengeState, id: number) => {
-  if (c.value !== null)
-    return c.value[id].challengeAnswer;
+  if (c.value !== null) return c.value[id].challengeAnswer;
   else return '';
 };
 

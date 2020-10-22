@@ -13,7 +13,7 @@ const API: apiEndpoints = {
   LOGIN: 'http://localhost:8080/api/login',
   REGISTER: '/api/register',
   LOGOUT: '/api/logout',
-  CHECK_RESPONSE: '/api/check-response',
+  CHECK_RESPONSE: 'http://localhost:8080/api/check-response',
   LEADERBOARD: '/api/leaderboard',
   GET_STATE: 'http://localhost:8080/api/get-state',
 };
