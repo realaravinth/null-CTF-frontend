@@ -2,6 +2,8 @@ import {createSlice} from '@reduxjs/toolkit';
 
 import {RootState} from '../store';
 
+import {getState} from '../API/getState';
+
 export interface authState {
   value: isAuthenticated;
 }
@@ -9,12 +11,13 @@ export interface authState {
 export enum isAuthenticated {
   loggedOut,
   loggedIn,
-  registered,
+  timerOver,
+  tooEarly,
   challengeReady,
 }
 
 const initialState: authState = {
-  value: isAuthenticated.challengeReady,
+  value: isAuthenticated.loggedOut,
 };
 
 export const authSlice = createSlice({
@@ -27,8 +30,11 @@ export const authSlice = createSlice({
     setLoggedOut: state => {
       state.value = isAuthenticated.loggedOut;
     },
-    setRegistered: state => {
-      state.value = isAuthenticated.registered;
+    setTimeOver: state => {
+      state.value = isAuthenticated.timerOver;
+    },
+    setTooEarly: state => {
+      state.value = isAuthenticated.tooEarly;
     },
     setChallengeReady: state => {
       state.value = isAuthenticated.challengeReady;
@@ -39,9 +45,19 @@ export const authSlice = createSlice({
 export const {
   setLoggedIn,
   setLoggedOut,
-  setRegistered,
   setChallengeReady,
+  setTooEarly,
+  setTimeOver,
 } = authSlice.actions;
+
+export const thunkedGetState = () => (
+  dispatch: any,
+) =>
+  getState().then((res: any) => {
+    if (res.status === 200) {
+      dispatch(setLoggedIn());
+    }
+  });
 
 export const selectAuth = (state: RootState) => state.authenticator.value;
 

@@ -8,14 +8,13 @@ const Root: React.FC = () => {
   const authVal = useSelector(selectAuth);
   switch (authVal) {
     case isAuthenticated.loggedIn:
-      return <Redirect to="/register" />;
-    case isAuthenticated.registered:
+      return <div /> //TODO show rules//<Redirect to="/register" />;
       //TODO this redirect should be replaced with a rules component
-      return <Redirect to="/challenges" />;
     case isAuthenticated.challengeReady:
       return <Redirect to="/challenges" />;
     case isAuthenticated.loggedOut:
       return <Redirect to="/login" />;
+    default: return <div />
   }
 };
 export default Root;

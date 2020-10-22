@@ -5,11 +5,14 @@ import {Provider} from 'react-redux';
 //import {PersistGate} from 'redux-persist/integration/react';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import {store} from './app/store';
+import {store, useAppDispatch} from './app/store';
+import {thunkedGetState} from './app/reducers/authSlice';
 
 import {saveState} from './app/utils/persistState';
 
 store.subscribe(() => saveState(store.getState()));
+
+store.dispatch(thunkedGetState());
 
 ReactDOM.render(
   <React.StrictMode>

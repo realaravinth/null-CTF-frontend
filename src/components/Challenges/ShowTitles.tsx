@@ -10,12 +10,12 @@ type showQuestionProps = {
 
 const ShowTitles: React.FC<showQuestionProps> = ({onClick}) => {
 const Titles = challenges.challenges.map((c: challenge) => (
-    <li key={c.id} onClick={() => onClick(c.id)}>
+    <li key={c.id} className={"ctitle"} onClick={() => onClick(c.id)}>
       {' '}
       {c.challengeTitle}{' '}
     </li>
   ));
-  return <ul> {Titles} </ul>
+  return <ul id="challenges"> {Titles} </ul>
 }
 
 export default ShowTitles;

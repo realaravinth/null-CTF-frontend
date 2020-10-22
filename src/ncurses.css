@@ -363,6 +363,10 @@ div.menudialog.container {
   margin-top: 70px;
 }
 
+.menudialog.menudialogbig.menuouter {
+  height: 55vh;
+}
+
 .menudialog.menudialogmobile {
   margin-top: 20vh;
   width: 40vh;
@@ -388,4 +392,46 @@ div.menudialog.container {
 
 .challengeBody a::before {
   content: '<';
+}
+
+.menuoptions.menusidebar {
+  width: 100%;
+  display: flex;
+}
+
+#challenges {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0px;
+  padding-left: 5px;
+}
+
+.ctitle {
+  border-top: 1px solid;
+  width: 100%;
+  flex-grow: 1;
+  padding-top: 5%;
+  text-indent: 10px;
+  text-align: start;
+}
+
+.btnSmallOuter {
+  padding-left: 10%;
+  padding-bottom: 10px;
+  padding-right: 10%;
+}
+
+.btnSmall {
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  height: 15px;
+  padding: 15px;
+  margin-top: 15px;
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #000;
+  border-left: 1px solid #fff;
+  border-right: 1px solid #000;
+  cursor: pointer;
 }

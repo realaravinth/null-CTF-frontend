@@ -13,4 +13,15 @@ const WithMenuButton: React.FunctionComponent<withMenuButtonProps> = ({
   </div>
 );
 
+export const WithMenuButtonSmall: React.FunctionComponent<withMenuButtonProps> = ({
+  children,
+  onClick,
+}) => (
+  <div className="btnSmallOuter">
+    <div className="btnSmall" onClick={onClick}>
+      {children}
+    </div>
+  </div>
+);
+
 export default WithMenuButton;

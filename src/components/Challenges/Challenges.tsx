@@ -62,7 +62,7 @@ const Challenges: React.FC = () => {
     setCurrentQ(c);
     setBody(c);
   };
-  if (authState === isAuthenticated.challengeReady) {
+  if (authState === isAuthenticated.loggedIn) {
     return (
       <WithMenuDialog
         size={menuDialogSize.big}
