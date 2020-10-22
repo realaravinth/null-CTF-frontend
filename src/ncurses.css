@@ -436,6 +436,33 @@ div.menudialog.container {
   text-align: start;
 }
 
+.ctitle.correct {
+  background-color: #ade0a4;
+}
+
+#active {
+  background-color: #b7b7b7;
+}
+
+#active::before {
+  content: '<<';
+}
+#active::after {
+  content: '>>';
+}
+
+.ctitle.correct {
+  background-color: #ade0a4;
+}
+
+.ctitle.correct:hover {
+  background-color: #84d177;
+}
+
+#active.ctitle.correct {
+  background-color: #84d177;
+}
+
 .btnSmallOuter {
   padding-left: 10%;
   padding-bottom: 10px;

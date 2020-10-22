@@ -64,7 +64,7 @@ const Challenges: React.FC = () => {
         pageTitle={'Challenges'}>
         <WithContentColumned>
           <WithContentSidebar>
-            <ShowTitles onClick={viewQuestion} />
+            <ShowTitles onClick={viewQuestion} activeID={currentQ} />
           </WithContentSidebar>
           <WithContentSidebarBody>
             <ShowQuestion body={currentQBody} id={currentQ} />
