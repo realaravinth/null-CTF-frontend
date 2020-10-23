@@ -5,7 +5,7 @@ import {useSelector} from 'react-redux';
 // app stuff
 import {
   selectAuth,
-setChallengeReady,
+  setChallengeReady,
   isAuthenticated,
 } from '../../app/reducers/authSlice';
 import {set_start_time} from '../../app/reducers/startTimeSlice';
@@ -64,9 +64,12 @@ const Login: React.FunctionComponent = () => {
                 credentials: 'include',
               })
                 .then(data => data.json())
-                .then(res => dispatch(addChallenge(res)));
+                .then(res => {
+                  dispatch(addChallenge(res));
 
-              dispatch(setChallengeReady());
+                  dispatch(setChallengeReady());
+                });
+
               break;
             case 401:
               alert('invalid credentials');

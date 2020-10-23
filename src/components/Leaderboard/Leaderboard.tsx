@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Redirect} from 'react-router-dom';
 import {useSelector} from 'react-redux';
 
@@ -14,6 +14,29 @@ import WithMenuDialog, {
 
 const Leaderboard: React.FC = () => {
   const authState = useSelector(selectAuth);
+  const [leaderboard, setLeaderboard] = useState([{}]);
+  const [userScore, setUserScore] = useState('');
+
+
+  useEffect(() => {
+    getLeaderboard()
+  });
+
+
+  const getLeaderboard = () => {
+    fetch('localhost:8080/api/leaderboard', {
+      credentials: 'include',
+    })
+      .then(result => result.json())
+      .then(leaderboardVals => {
+        leaderboardVals.topTwenty.map((person: any) => {
+          let prevState = leaderboard;
+          prevState.push({name: person.name, score: person.score});
+          setLeaderboard(prevState);
+        });
+        setUserScore(leaderboardVals.you.score);
+      });
+  };
 
   if (authState === isAuthenticated.challengeReady) {
     return (
