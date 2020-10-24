@@ -60,7 +60,7 @@ const Login: React.FunctionComponent = () => {
                   dispatch(set_start_time(parseInt(time.startTime))),
                 );
 
-              fetch('http://localhost:8080/api/get-challenges', {
+              fetch('/api/get-challenges', {
                 credentials: 'include',
               })
                 .then(data => data.json())

@@ -29,7 +29,7 @@ const App = () => {
    const authVal = useSelector(selectAuth);
   //  if (authVal  !== isAuthenticated.loggedOut && challenges === null){
   if ( challenges === null ){
-    fetch("http://localhost:8080/api/get-challenges", {
+    fetch("/api/get-challenges", {
           credentials: 'include',
       }).then(data => data.json()).then((res) =>
         dispatch(addChallenge(res)));

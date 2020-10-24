@@ -39,6 +39,17 @@ const Challenges: React.FC = () => {
     init = '<p> Loading...</p>';
   }
   const [currentQBody, setCurrentQBody] = useState(init);
+  
+  const getScore = () => {
+    let score = 0;
+    if (challenges !== null)
+    challenges.map((c:challenge) => {
+      if (c.hasAnswered === true){
+        score += c.score
+      }});
+    return score;
+  };
+
 
   const setBody = (c: number) => {
     if (challenges !== null) {
@@ -48,7 +59,6 @@ const Challenges: React.FC = () => {
     }
   };
 
-  console.log(currentQBody);
   const viewQuestion = (c: number) => {
     setCurrentQ(c);
     setBody(c);
@@ -70,6 +80,8 @@ const Challenges: React.FC = () => {
             <ShowQuestion body={currentQBody} id={currentQ} />
           </WithContentSidebarBody>
         </WithContentColumned>
+          <br />
+          Score: {getScore()}
       </WithMenuDialog>
     );
   } else {

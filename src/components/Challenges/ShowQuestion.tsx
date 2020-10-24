@@ -51,19 +51,20 @@ const ShowQuestion: React.FC<ShowQuestionProps> = ({id, body}) => {
 
   const submitHandler = (e: React.MouseEvent) => {
     e.preventDefault();
-    if (isBlankString(currentQAnswer(id))) {
+    const answer = currentQAnswer(id).trim();
+    if (isBlankString(answer)) {
       alert("can't be empty");
     } else {
-      if (binarySet.test(currentQAnswer(id))) {
+      if (binarySet.test(answer)) {
         if (id === 1) {
-          if (binarySet.test(currentQAnswer(id))) {
+          if (binarySet.test(answer)) {
             setShowHint(showHintVals.showBinToDecHint);
           }
         }
       } else {
         const payload = JSON.stringify({
           id: id,
-          userAnswer: currentQAnswer(id),
+          userAnswer: answer,
         });
         checkResponse(payload).then(res => {
           if (res.status === 200) {
@@ -142,7 +143,7 @@ const FirstQuestion: React.FC<firstQProps> = ({hintState, onClick}) => {
   } else if (hintState === showHintVals.noHint) {
     return (
       <WithMenuButtonSmall onClick={onClick}>
-        Aks computer nicely
+        Ask computer nicely
       </WithMenuButtonSmall>
     );
   } else {

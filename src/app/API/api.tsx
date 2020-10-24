@@ -9,13 +9,13 @@ type apiEndpoints = {
 };
 
 const API: apiEndpoints = {
-  GET_CHALLENGES: 'http://localhost:8080/api/get-challenges',
-  LOGIN: 'http://localhost:8080/api/login',
+  GET_CHALLENGES: '/api/get-challenges',
+  LOGIN: '/api/login',
   REGISTER: '/api/register',
   LOGOUT: '/api/logout',
-  CHECK_RESPONSE: 'http://localhost:8080/api/check-response',
+  CHECK_RESPONSE: '/api/check-response',
   LEADERBOARD: '/api/leaderboard',
-  GET_STATE: 'http://localhost:8080/api/get-state',
+  GET_STATE: '/api/get-state',
 };
 
 export default API;

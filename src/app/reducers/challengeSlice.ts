@@ -55,7 +55,7 @@ export const challengeSlice = createSlice({
     setHasAnswered: (state, action: PayloadAction<number>) => {
       let prevState = state.value;
       if (prevState !== null) {
-        prevState[action.payload].hasAnswered = true;
+        prevState[action.payload-1].hasAnswered = true;
         state.value = prevState;
       }
     },
